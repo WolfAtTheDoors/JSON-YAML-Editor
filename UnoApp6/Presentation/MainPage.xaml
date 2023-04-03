@@ -1,0 +1,34 @@
+﻿<Page xmlns:uen="using:Uno.Extensions.Navigation.UI" 
+      xmlns:uer="using:Uno.Extensions.Reactive.UI" 
+      xmlns:utu="using:Uno.Toolkit.UI" 
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      xmlns:um="using:Uno.Material" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Uno.Platform.Material.Toolkit.Community"
+      x:Class="UnoApp6.Presentation.MainPage"
+      mc:Ignorable="d" 
+      Background="{ThemeResource BackgroundBrush}" 
+      NavigationCacheMode="Required" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+    <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
+        <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" PrimaryAxisAlignment="Center" Orientation="Horizontal" Height="44">
+            <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
+                <TextBlock TextAlignment="Center" Text="JSON Editor" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" Style="{StaticResource HeadlineSmall}" />
+            </utu:AutoLayout>
+        </utu:AutoLayout>
+        <utu:AutoLayout Spacing="-1" PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
+            <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="134,316,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104">
+                <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start" Width="117">
+                    <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal" Height="40">
+                        <TextBlock Text="Datei Öffnen" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource SurfaceVariantBrush}" Style="{StaticResource LabelLarge}" />
+                    </utu:AutoLayout>
+                </utu:AutoLayout>
+            </utu:AutoLayout>
+            <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="31,237,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Datei Pfad eingeben" Style="{StaticResource OutlinedTextBoxStyle}" />
+        </utu:AutoLayout>
+        <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" Justify="SpaceBetween" Orientation="Horizontal" Height="44" />
+    </utu:AutoLayout>
+</Page>
