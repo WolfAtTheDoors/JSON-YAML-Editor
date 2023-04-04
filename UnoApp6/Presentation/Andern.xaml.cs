@@ -23,5 +23,10 @@ namespace UnoApp6.Presentation {
         public Andern() {
             this.InitializeComponent();
         }
+
+        private void GoToJSONListe(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(JSONListe));
+        }
+
     }
 }

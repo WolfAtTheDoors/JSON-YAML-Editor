@@ -11,39 +11,55 @@
       NavigationCacheMode="Required"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 
+    <Grid>
+        <TextBlock x:Name="pageTitle" Text="Andern" />
 
-    <utu:AutoLayout Background="{ThemeResource PrimaryInverseBrush}" Spacing="1">
-        <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="166,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="Ändern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnBackgroundBrush}" />
-        </utu:AutoLayout>
-        <utu:AutoLayout Spacing="38" PrimaryAxisAlignment="Center" Height="672">
-            <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="415">
-                <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
-                    <TextBlock Text="{}{&#xA;  Beispieltext&#xA;        Beispieltext&#xA;        Beispieltext&#xA;   etc.&#xA;}" utu:AutoLayout.CounterAlignment="Center" Width="370" Height="421" Style="{StaticResource TitleMedium}" />
-                </utu:AutoLayout>
-            </ScrollViewer>
-            <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="255">
-                <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
-                    <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="206,193,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Height="40">
-                        <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
-                            <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal" utu:AutoLayout.PrimaryAlignment="Stretch">
-                                <TextBlock TextAlignment="Center" Text="Verwerfen" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+        <utu:AutoLayout Background="{ThemeResource PrimaryInverseBrush}" Spacing="1">
+            <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="166,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
+                <TextBlock Text="Ändern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnBackgroundBrush}" />
+            </utu:AutoLayout>
+
+            <utu:AutoLayout Spacing="38" PrimaryAxisAlignment="Center" Height="672">
+
+                <!-- Darstellung des Elements-->
+                <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="415">
+                    <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
+                        <TextBlock Text="{}{&#xA;  Beispieltext&#xA;        Beispieltext&#xA;        Beispieltext&#xA;   etc.&#xA;}" utu:AutoLayout.CounterAlignment="Center" Width="370" Height="421" Style="{StaticResource TitleMedium}" />
+                    </utu:AutoLayout>
+                </ScrollViewer>
+
+                <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="255">
+                    <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
+
+                        <!-- Zurück Button-->
+                        <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="206,193,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Height="40">
+                            <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
+                                <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal" utu:AutoLayout.PrimaryAlignment="Stretch">
+                                    <HyperlinkButton Click="GoToJSONListe">
+                                        <TextBlock TextAlignment="Center" Text="Verwerfen" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                                    </HyperlinkButton>
+                                </utu:AutoLayout>
                             </utu:AutoLayout>
                         </utu:AutoLayout>
-                    </utu:AutoLayout>
-                    <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="67,193,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104" Height="40">
-                        <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
-                            <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal" utu:AutoLayout.PrimaryAlignment="Stretch">
-                                <TextBlock TextAlignment="Center" Text="Speichern" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+
+                        <!-- Speichern Button-->
+                        <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="67,193,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104" Height="40">
+                            <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
+                                <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal" utu:AutoLayout.PrimaryAlignment="Stretch">
+                                    <TextBlock TextAlignment="Center" Text="Speichern" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                                </utu:AutoLayout>
                             </utu:AutoLayout>
                         </utu:AutoLayout>
+
+                        <!-- Eingabe Textfelder-->
+                        <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,11,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Name" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
+                        <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,67,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Neuer Wert" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
+                        <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,123,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Neuer Name" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
                     </utu:AutoLayout>
-                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,11,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Name" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
-                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,67,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Neuer Wert" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
-                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,123,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Neuer Name" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
-                </utu:AutoLayout>
-            </ScrollViewer>
+                </ScrollViewer>
+
+            </utu:AutoLayout>
+            <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" Justify="SpaceBetween" Orientation="Horizontal" Height="44" />
         </utu:AutoLayout>
-        <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" Justify="SpaceBetween" Orientation="Horizontal" Height="44" />
-    </utu:AutoLayout>
+    </Grid>
 </Page>
