@@ -12,40 +12,66 @@
       NavigationCacheMode="Required" 
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 
-    <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
-        <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="Dateiname" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" />
-        </utu:AutoLayout>
-        <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
-            <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="673">
-                <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
-                    <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="25,615,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
-                            <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                                <TextBlock Text="Speichern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
-                            </utu:AutoLayout>
+    <Grid>
+        <TextBlock x:Name="pageTitle" Text="JSONListe" />
+
+        <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
+
+            <!--Darstellung Dateiname -->
+            <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
+                <TextBlock Text="Dateiname" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" />
+            </utu:AutoLayout>
+
+            <!--Darstellung der Seite -->
+            <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
+                <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="673">
+                    <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
+
+                        <!--Darstellung der JSON -->
+                        <utu:AutoLayout Padding="0,0,0,58" utu:AutoLayout.IsIndependentLayout="True" Margin="8,10.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="369" Height="591">
+                            <TextBlock Text="Headline" utu:AutoLayout.CounterAlignment="Start" Foreground="{ThemeResource OnSurfaceBrush}" />
                         </utu:AutoLayout>
+
                     </utu:AutoLayout>
-                    <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="147,615,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
-                            <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                                <TextBlock Text="Verwerfen" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
-                            </utu:AutoLayout>
-                        </utu:AutoLayout>
-                    </utu:AutoLayout>
-                    <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="274,615,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
-                            <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
+                </ScrollViewer>
+
+                <!--Ändern Button -->
+                <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="274,615,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
+                        <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
+                            <HyperlinkButton Click="GoToAndern">
                                 <TextBlock Text="Ändern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
-                            </utu:AutoLayout>
+                            </HyperlinkButton>
                         </utu:AutoLayout>
-                    </utu:AutoLayout>
-                    <utu:AutoLayout Padding="0,0,0,58" utu:AutoLayout.IsIndependentLayout="True" Margin="8,10.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="369" Height="591">
-                        <TextBlock Text="Headline" utu:AutoLayout.CounterAlignment="Start" Foreground="{ThemeResource OnSurfaceBrush}" />
                     </utu:AutoLayout>
                 </utu:AutoLayout>
-            </ScrollViewer>
+
+                <!--Zurück Button -->
+                <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="147,615,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
+                        <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
+                            <HyperlinkButton Click="GoToMainPage">
+                                <TextBlock Text="Verwerfen" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                            </HyperlinkButton>
+                        </utu:AutoLayout>
+                    </utu:AutoLayout>
+                </utu:AutoLayout>
+
+
+                <!--Speichern Button -->
+                <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="25,615,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
+                        <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
+
+                            <TextBlock Text="Speichern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+
+                        </utu:AutoLayout>
+                    </utu:AutoLayout>
+                </utu:AutoLayout>
+
+            </utu:AutoLayout>
+            <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" Justify="SpaceBetween" Orientation="Horizontal" Height="44" />
         </utu:AutoLayout>
-        <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" Justify="SpaceBetween" Orientation="Horizontal" Height="44" />
-    </utu:AutoLayout>
+
+    </Grid>
 </Page>

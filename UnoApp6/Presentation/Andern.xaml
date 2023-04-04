@@ -1,19 +1,20 @@
 ﻿<Page xmlns:uen="using:Uno.Extensions.Navigation.UI" 
-      xmlns:uer="using:Uno.Extensions.Reactive.UI"
+      xmlns:uer="using:Uno.Extensions.Reactive.UI" 
       xmlns:utu="using:Uno.Toolkit.UI" 
-      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls" 
       xmlns:um="using:Uno.Material" 
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       x:Class="UnoApp6.Presentation.Andern"
       mc:Ignorable="d" Background="{ThemeResource BackgroundBrush}" 
       NavigationCacheMode="Required"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 
-    <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
+
+    <utu:AutoLayout Background="{ThemeResource PrimaryInverseBrush}" Spacing="1">
         <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="166,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="Ändern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource StatusBarForegroundBrush}" />
+            <TextBlock Text="Ändern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnBackgroundBrush}" />
         </utu:AutoLayout>
         <utu:AutoLayout Spacing="38" PrimaryAxisAlignment="Center" Height="672">
             <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="415">
@@ -37,9 +38,9 @@
                             </utu:AutoLayout>
                         </utu:AutoLayout>
                     </utu:AutoLayout>
-                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,11,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Name" Style="{StaticResource OutlinedTextBoxStyle}" />
-                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,67,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Neuer Wert" Style="{StaticResource OutlinedTextBoxStyle}" />
-                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,123,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Neuer Name" Style="{StaticResource OutlinedTextBoxStyle}" />
+                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,11,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Name" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
+                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,67,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Neuer Wert" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
+                    <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="29.5,123,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Neuer Name" PlaceholderForeground="{ThemeResource OnBackgroundBrush}" BorderBrush="{ThemeResource OnBackgroundBrush}" BorderThickness="1" Style="{StaticResource OutlinedTextBoxStyle}" />
                 </utu:AutoLayout>
             </ScrollViewer>
         </utu:AutoLayout>

@@ -10,6 +10,7 @@ namespace UnoApp6.Presentation {
 
         private void GoToJSONListe(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateViewAsync<JSONListe>(this);
+
         }
 
     }

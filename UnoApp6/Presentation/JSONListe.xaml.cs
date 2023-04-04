@@ -6,5 +6,14 @@
         public JSONListe() {
             this.InitializeComponent();
         }
+
+        private void GoToMainPage(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void GoToAndern(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(Andern));
+        }
+
     }
 }
