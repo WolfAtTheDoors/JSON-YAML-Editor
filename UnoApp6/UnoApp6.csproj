@@ -60,10 +60,12 @@
 
 	<ItemGroup>
 		<None Remove="Presentation\Andern.xaml" />
+		<None Remove="Presentation\Bestaetigen.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<UpToDateCheckInput Remove="Presentation\Andern.xaml" />
+		<UpToDateCheckInput Remove="Presentation\Bestaetigen.xaml" />
 		<UpToDateCheckInput Remove="Presentation\JSONListe.xaml" />
 	</ItemGroup>
 

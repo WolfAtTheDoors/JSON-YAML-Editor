@@ -24,6 +24,7 @@
 
             <utu:AutoLayout Spacing="-1" PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
 
+
                 <!--Datei Öffnen Button -->
                 <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="134,316,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104">
                     <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start" Width="117">
@@ -35,8 +36,12 @@
                     </utu:AutoLayout>
                 </utu:AutoLayout>
 
+
+                <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="31,237,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Datei Pfad eingeben" Name="dateiPfad"  Style="{StaticResource OutlinedTextBoxStyle}" />
+
+
+
                 <!-- Dateipfad Eingabefeld-->
-                <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="31,237,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Datei Pfad eingeben" Style="{StaticResource OutlinedTextBoxStyle}" />
 
             </utu:AutoLayout>
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" Justify="SpaceBetween" Orientation="Horizontal" Height="44" />

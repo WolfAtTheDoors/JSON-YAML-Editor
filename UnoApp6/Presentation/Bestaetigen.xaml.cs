@@ -13,14 +13,12 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace UnoApp6.Presentation {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Andern : Page {
-        public Andern() {
+    public sealed partial class Bestaetigen : Page {
+        public Bestaetigen() {
             this.InitializeComponent();
         }
 
@@ -32,9 +30,6 @@ namespace UnoApp6.Presentation {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
 
-        private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Bestaetigen));
-        }
 
     }
 }

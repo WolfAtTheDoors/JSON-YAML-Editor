@@ -19,7 +19,7 @@
 
             <!--Darstellung Dateiname -->
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="Dateiname" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" />
+                <TextBlock Text="" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="dateiName"/>
             </utu:AutoLayout>
 
             <!--Darstellung der Seite -->
@@ -29,7 +29,7 @@
 
                         <!--Darstellung der JSON -->
                         <utu:AutoLayout Padding="0,0,0,58" utu:AutoLayout.IsIndependentLayout="True" Margin="8,10.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="369" Height="591">
-                            <TextBlock Text="Headline" utu:AutoLayout.CounterAlignment="Start" Foreground="{ThemeResource OnSurfaceBrush}" />
+                            <TextBlock Text="" utu:AutoLayout.CounterAlignment="Start" Foreground="{ThemeResource OnSurfaceBrush}" Name="JSON"/>
                         </utu:AutoLayout>
 
                     </utu:AutoLayout>
@@ -50,7 +50,7 @@
                 <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="147,615,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
                         <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                            <HyperlinkButton Click="GoToMainPage">
+                            <HyperlinkButton Click="GoBack">
                                 <TextBlock Text="Verwerfen" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
                             </HyperlinkButton>
                         </utu:AutoLayout>
@@ -62,9 +62,9 @@
                 <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="25,615,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
                         <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-
-                            <TextBlock Text="Speichern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
-
+                            <HyperlinkButton Click="GoToBestaetigen">
+                                <TextBlock Text="Speichern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                            </HyperlinkButton>
                         </utu:AutoLayout>
                     </utu:AutoLayout>
                 </utu:AutoLayout>
