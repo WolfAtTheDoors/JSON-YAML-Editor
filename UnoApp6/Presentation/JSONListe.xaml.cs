@@ -29,10 +29,13 @@
 
             }
             else {
-                JSON.Text = "Hi!";
+                JSON.Text = "Bitte gib einen gültigen Dateipfad ein!";
             }
             base.OnNavigatedTo(e);
         }
+
+
+
 
     }
 }
