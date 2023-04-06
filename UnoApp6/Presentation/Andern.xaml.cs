@@ -36,5 +36,16 @@ namespace UnoApp6.Presentation {
             this.Frame.Navigate(typeof(Bestaetigen));
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter)) {
+                JSON.Text = e.Parameter.ToString();
+
+            }
+            else {
+                JSON.Text = "Bitte gib einen gültigen Dateipfad ein!";
+            }
+            base.OnNavigatedTo(e);
+        }
+
     }
 }

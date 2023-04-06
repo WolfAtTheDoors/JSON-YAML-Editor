@@ -10,7 +10,7 @@
         }
 
         private void GoToAndern(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Andern));
+            this.Frame.Navigate(typeof(Andern), JSON.Text);
         }
 
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
