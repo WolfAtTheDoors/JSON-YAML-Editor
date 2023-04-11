@@ -23,7 +23,7 @@
             <utu:AutoLayout Spacing="38" PrimaryAxisAlignment="Center" Height="672">
                 <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="367">
                     <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
-                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Style="{StaticResource TitleMedium}" Name="JSON" />
+                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Style="{StaticResource TitleMedium}" Name="dateiName" />
                     </utu:AutoLayout>
                 </ScrollViewer>
 
