@@ -12,7 +12,7 @@ namespace UnoApp6.Presentation {
 
         private void GoToJSONListe(object sender, RoutedEventArgs e) {
 
-            this.Frame.Navigate(typeof(JSONListe), dateiPfad.Text);
+            this.Frame.Navigate(typeof(JSONListe), dateiName.Text);
 
         }
 

@@ -29,7 +29,7 @@
 
                         <!--Darstellung der JSON -->
                         <utu:AutoLayout Padding="0,0,0,58" utu:AutoLayout.IsIndependentLayout="True" Margin="8,10.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="369" Height="591">
-                            <TextBlock Text="" utu:AutoLayout.CounterAlignment="Start" Foreground="{ThemeResource OnSurfaceBrush}" Name="JSON"/>
+                            <TextBlock Text="" utu:AutoLayout.CounterAlignment="Start" Foreground="{ThemeResource OnSurfaceBrush}" Name="jsonData"/>
                         </utu:AutoLayout>
 
                     </utu:AutoLayout>
