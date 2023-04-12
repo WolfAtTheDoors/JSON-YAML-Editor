@@ -13,7 +13,7 @@
             this.Frame.Navigate(typeof(Andern), dateiName.Text);
         }
         private void GoToOffnen(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Offnen));
+            this.Frame.Navigate(typeof(Offnen), jsonData.Text);
         }
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);

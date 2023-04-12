@@ -7,9 +7,6 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace UnoApp6.Presentation {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -19,17 +16,24 @@ namespace UnoApp6.Presentation {
             this.InitializeComponent();
         }
 
-        private void GoToJSONListe(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(JSONListe), objektNummer);
-
+        private void GoToAndern(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(Andern), objektNummer);
         }
-
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
 
-        private void GoToMainPage(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(MainPage));
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+
+            //string test1! = e.Parameter.ToString();
+            string test = objektNummer.Text;
+
+            //attempt to access the requested object using objektNummer.jsonData or something like that
+            //e is the formatted json from JSONListe
+
+
+            base.OnNavigatedTo(e);
         }
+
     }
 }

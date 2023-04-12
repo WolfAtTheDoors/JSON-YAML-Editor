@@ -16,18 +16,24 @@
 
         <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" CornerRadius="28">
             <utu:AutoLayout Spacing="16" Padding="16">
-                <TextBox Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Objekt Nummer" Style="{StaticResource OutlinedTextBoxStyle}" />
+
+                <!--Objektnummer eingeben-->
+                <TextBox Text="" PlaceholderText="Objekt Nummer" Style="{StaticResource OutlinedTextBoxStyle}" Name="objektNummer"/>
                 <utu:AutoLayout Orientation="Horizontal" Height="40">
 
-                    <!--Öffnen-->
-                    <HyperlinkButton Click="GoToMainPage">
-                        <Button Content="Öffnen" utu:AutoLayout.CounterAlignment="Start" Height="40" Style="{StaticResource TextButtonStyle}" Name="objektNummer"/>
-                    </HyperlinkButton>
+                    <utu:AutoLayout Spacing="8" Padding="24,0,24,24" PrimaryAxisAlignment="End" Orientation="Horizontal">
 
-                    <!--Zurück-->
-                    <HyperlinkButton Click="GoBack">
-                        <Button Content="Zurück" utu:AutoLayout.CounterAlignment="Start" Height="40" Style="{StaticResource TextButtonStyle}" />
-                    </HyperlinkButton>
+                        <!--Öffnen-->
+                        <HyperlinkButton Click="GoToAndern">
+                            <TextBlock Text="Öffnen" utu:AutoLayout.CounterAlignment="Start" Height="40" Style="{StaticResource TextButtonStyle}" />
+                        </HyperlinkButton>
+
+                        <!--Zurück-->
+                        <HyperlinkButton Click="GoBack">
+                            <TextBlock Text="Zurück" utu:AutoLayout.CounterAlignment="Start" Height="40" Style="{StaticResource TextButtonStyle}" />
+                        </HyperlinkButton>
+
+                    </utu:AutoLayout>
 
                 </utu:AutoLayout>
             </utu:AutoLayout>

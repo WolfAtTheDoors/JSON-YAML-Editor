@@ -18,7 +18,7 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
 
             <!--Darstellung Dateiname -->
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" x:Name="dateiName"/>
+                <TextBlock Text="" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="dateiName"/>
             </utu:AutoLayout>
 
             <!--Darstellung der Seite -->
@@ -27,7 +27,7 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
                 <!--Darstellung der JSON -->
                 <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="673">
                     <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
-                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" x:Name="jsonData"/>
+                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" Name="jsonData"/>
                     </utu:AutoLayout>
                 </ScrollViewer>
 

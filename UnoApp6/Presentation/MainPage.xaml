@@ -24,7 +24,6 @@
 
             <utu:AutoLayout Spacing="-1" PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
 
-
                 <!--Datei Öffnen Button -->
                 <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="134,316,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104">
                     <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start" Width="117">
