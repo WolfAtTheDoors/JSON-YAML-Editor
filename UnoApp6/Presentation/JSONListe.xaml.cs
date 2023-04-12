@@ -1,11 +1,8 @@
-﻿using System.Text;
-using System.Text.Json;
-
-namespace UnoApp6.Presentation {
+﻿namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
 
         public JSONListe() {
-            InitializeComponent();
+            this.InitializeComponent();
 
         }
 
@@ -15,19 +12,24 @@ namespace UnoApp6.Presentation {
         private void GoToAndern(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Andern), dateiName.Text);
         }
-        private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Bestaetigen));
+        private void GoToOffnen(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(Offnen));
         }
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
         protected override void OnNavigatedTo(NavigationEventArgs e) {
+
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter)) {
 
                 dateiName.Text = e.Parameter.ToString();
-                jsonData.Text = File.ReadAllText(dateiName.Text!);
+                jsonData.Text = JsonHelper.FormatJson(File.ReadAllText(dateiName.Text!));
 
             }
+            else if (e.Parameter is int) {
+                dateiName.Text = "Die Nummer aus Öffnen ist" + e.Parameter;
+            }
+
             else {
                 dateiName.Text = "Bitte gib einen gültigen Dateipfad ein!";
             }
@@ -36,12 +38,11 @@ namespace UnoApp6.Presentation {
 
         // S:\Austausch\gisela\vmListe.json chaos
         // S:\Austausch\gisela\rahmenduebel.json ordnung
-        // display the json content
     }
-
 
     class JsonHelper {
         private const string INDENT_STRING = "    ";
+        private const string INTEGER_STRING = "0123456789";
 
         public static string FormatJson(string jsonData) {
 
@@ -57,19 +58,14 @@ namespace UnoApp6.Presentation {
                     case '{':
                     case '[':
                     sb.Append(ch);
-
-                    if (!quoted) {
-                        sb.AppendLine();
-                        Enumerable.Range(0, ++indent).ForEach(item => sb.Append(INDENT_STRING));
-                    }
+                    sb.AppendLine();
+                    Enumerable.Range(0, ++indent).ForEach(item => sb.Append(INDENT_STRING));
                     break;
 
                     case '}':
                     case ']':
-                    if (!quoted) {
-                        sb.AppendLine();
-                        Enumerable.Range(0, --indent).ForEach(item => sb.Append(INDENT_STRING));
-                    }
+                    sb.AppendLine();
+                    Enumerable.Range(0, --indent).ForEach(item => sb.Append(INDENT_STRING));
                     sb.Append(ch);
                     break;
 
@@ -85,7 +81,7 @@ namespace UnoApp6.Presentation {
 
                     case ',':
                     sb.Append(ch);
-                    if (!quoted) {
+                    if (!INTEGER_STRING.Contains(jsonData[i + 1])) {
                         sb.AppendLine();
                         Enumerable.Range(0, indent).ForEach(item => sb.Append(INDENT_STRING));
                     }
@@ -95,6 +91,12 @@ namespace UnoApp6.Presentation {
                     sb.Append(ch);
                     if (!quoted)
                         sb.Append(" ");
+                    break;
+
+                    case '\\':
+                    if (jsonData[i + 1].Equals("\"")) {
+                        sb.Replace('\\', ' ');
+                    }
                     break;
 
                     default:

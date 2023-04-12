@@ -5,8 +5,8 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
  xmlns:um="using:Uno.Material" 
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
- xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  x:Class="UnoApp6.Presentation.JSONListe" 
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+  x:Class="UnoApp6.Presentation.JSONListe"  
   mc:Ignorable="d" Background="{ThemeResource BackgroundBrush}" 
   NavigationCacheMode="Required"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -18,7 +18,7 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
 
             <!--Darstellung Dateiname -->
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="dateiName"/>
+                <TextBlock Text="" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" x:Name="dateiName"/>
             </utu:AutoLayout>
 
             <!--Darstellung der Seite -->
@@ -27,7 +27,7 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
                 <!--Darstellung der JSON -->
                 <ScrollViewer Padding="8" utu:AutoLayout.PrimaryAlignment="Stretch" Height="673">
                     <utu:AutoLayout Padding="8" PrimaryAxisAlignment="Center">
-                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" Name="jsonData"/>
+                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" x:Name="jsonData"/>
                     </utu:AutoLayout>
                 </ScrollViewer>
 
@@ -38,15 +38,14 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
                 <!--Speichern Button -->
                 <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
                     <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                        <HyperlinkButton Click="GoToBestaetigen">
-                            <TextBlock Text="Speichern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                        <HyperlinkButton Click="GoToOffnen">
+                            <TextBlock Text="öffnen" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" x:Name="jsonObjekt"/>
                         </HyperlinkButton>
                     </utu:AutoLayout>
                 </utu:AutoLayout>
 
             </utu:AutoLayout>
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="147,659.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-
 
                 <!--Zurück Button -->
                 <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">

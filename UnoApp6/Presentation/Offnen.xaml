@@ -1,0 +1,37 @@
+﻿<Page xmlns:uen="using:Uno.Extensions.Navigation.UI"
+      xmlns:uer="using:Uno.Extensions.Reactive.UI"
+      xmlns:utu="using:Uno.Toolkit.UI"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      xmlns:um="using:Uno.Material"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      x:Class="UnoApp6.Presentation.Offnen" 
+      mc:Ignorable="d" Background="{ThemeResource BackgroundBrush}" 
+      NavigationCacheMode="Required"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+    <Grid>
+        <TextBlock x:Name="pageTitle" Text="JSONListe" />
+
+        <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" CornerRadius="28">
+            <utu:AutoLayout Spacing="16" Padding="16">
+                <TextBox Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Objekt Nummer" Style="{StaticResource OutlinedTextBoxStyle}" />
+                <utu:AutoLayout Orientation="Horizontal" Height="40">
+
+                    <!--Öffnen-->
+                    <HyperlinkButton Click="GoToMainPage">
+                        <Button Content="Öffnen" utu:AutoLayout.CounterAlignment="Start" Height="40" Style="{StaticResource TextButtonStyle}" Name="objektNummer"/>
+                    </HyperlinkButton>
+
+                    <!--Zurück-->
+                    <HyperlinkButton Click="GoBack">
+                        <Button Content="Zurück" utu:AutoLayout.CounterAlignment="Start" Height="40" Style="{StaticResource TextButtonStyle}" />
+                    </HyperlinkButton>
+
+                </utu:AutoLayout>
+            </utu:AutoLayout>
+        </utu:AutoLayout>
+
+    </Grid>
+</Page>

@@ -40,8 +40,8 @@ namespace UnoApp6 {
                 new RouteMap("", View: views.FindByViewModel<ShellViewModel>(),
                     Nested: new RouteMap[]
                     {
-                    new RouteMap("Main", View: views.FindByViewModel<MainViewModel>()),
-                    new RouteMap("Second", View: views.FindByViewModel<SecondViewModel>()),
+                    new RouteMap("MainPage", View: views.FindByViewModel<MainViewModel>()),
+                    new RouteMap("JSONListe", View: views.FindByViewModel<SecondViewModel>()),
                     }
                 )
             );
