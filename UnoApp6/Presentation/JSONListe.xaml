@@ -9,6 +9,7 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
   x:Class="UnoApp6.Presentation.JSONListe"  
   mc:Ignorable="d" Background="{ThemeResource BackgroundBrush}" 
   NavigationCacheMode="Required"
+  x:Name="objektNummer"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 
     <Grid>
@@ -35,11 +36,11 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
             </utu:AutoLayout>
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="25,659.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
 
-                <!--Speichern Button -->
+                <!--Objekt Öffnen Button -->
                 <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
                     <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
                         <HyperlinkButton Click="GoToOffnen">
-                            <TextBlock Text="öffnen" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" x:Name="jsonObjekt"/>
+                            <TextBlock Text="Objekt öffnen" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" x:Name="jsonObjekt"/>
                         </HyperlinkButton>
                     </utu:AutoLayout>
                 </utu:AutoLayout>

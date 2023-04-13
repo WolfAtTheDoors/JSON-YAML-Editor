@@ -5,15 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace UnoApp6.Presentation {
     /// <summary>
@@ -38,11 +30,11 @@ namespace UnoApp6.Presentation {
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter)) {
-                dateiName.Text = e.Parameter.ToString();
+                jsonData.Text = e.Parameter.ToString();
 
             }
             else {
-                dateiName.Text = "Bitte gib einen gültigen Dateipfad ein!";
+                jsonData.Text = "Bitte gib einen gültigen Dateipfad ein!";
             }
             base.OnNavigatedTo(e);
         }

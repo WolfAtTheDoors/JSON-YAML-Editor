@@ -1,4 +1,8 @@
-﻿namespace UnoApp6.Presentation {
+﻿using System.Runtime.InteropServices.JavaScript;
+using Newtonsoft.Json;
+using Windows.Management.Deployment.Preview;
+
+namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
 
         public JSONListe() {
@@ -10,7 +14,7 @@
             this.Frame.Navigate(typeof(MainPage));
         }
         private void GoToAndern(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Andern), dateiName.Text);
+            this.Frame.Navigate(typeof(Andern), jsonData.Text);
         }
         private void GoToOffnen(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Offnen), jsonData.Text);
@@ -26,9 +30,6 @@
                 jsonData.Text = JsonHelper.FormatJson(File.ReadAllText(dateiName.Text!));
 
             }
-            else if (e.Parameter is int) {
-                dateiName.Text = "Die Nummer aus Öffnen ist" + e.Parameter;
-            }
 
             else {
                 dateiName.Text = "Bitte gib einen gültigen Dateipfad ein!";
@@ -38,6 +39,8 @@
 
         // S:\Austausch\gisela\vmListe.json chaos
         // S:\Austausch\gisela\rahmenduebel.json ordnung
+        // BeispielJSON
+
     }
 
     class JsonHelper {
@@ -117,3 +120,60 @@
     }
 
 }
+
+
+
+namespace BeispielJSON {
+    public class Studenten {
+        public string? nachname { get; set; }
+
+    }
+    public class Universitäten {
+        public string? universität { get; set; }
+
+        public IList<Studenten>? studenten { get; set; }
+
+    }
+    public class KlassenUnis {
+
+        public Universitäten? universitäten { get; set; }
+
+    }
+
+    class Program {
+
+        static void UniProgram() {
+
+            KlassenUnis KlassenUni1 = new KlassenUnis();
+
+            KlassenUni1.universitäten = new Universitäten();
+            KlassenUni1.universitäten.universität = "KIT";
+
+            List<Studenten> studenten = new List<Studenten>();
+            Studenten studenten1 = new Studenten {
+                nachname = "Wolf"
+            };
+            Studenten studenten2 = new Studenten {
+                nachname = "Schmidt"
+            };
+            Studenten studenten3 = new Studenten {
+                nachname = "Sailer"
+            };
+
+            studenten.Add(studenten1);
+            studenten.Add(studenten2);
+            studenten.Add(studenten3);
+
+            string BeispielJSON = JsonConvert.SerializeObject(KlassenUni1);
+
+
+        }
+    }
+
+}
+
+
+
+
+
+

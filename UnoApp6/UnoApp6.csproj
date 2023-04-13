@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Uno.Dsp.Tasks" Version="1.0.1" />
 		<PackageReference Include="Uno.Extensions.Reactive.WinUI" Version="2.3.2" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="2.5.5" />
