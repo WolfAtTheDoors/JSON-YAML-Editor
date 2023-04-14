@@ -27,7 +27,7 @@ namespace UnoApp6.Presentation {
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter)) {
 
                 dateiName.Text = e.Parameter.ToString();
-                jsonData.Text = JsonHelper.FormatJson(File.ReadAllText(dateiName.Text!));
+                jsonData.Text = File.ReadAllText(dateiName.Text!);
 
             }
 
@@ -39,7 +39,7 @@ namespace UnoApp6.Presentation {
 
         // S:\Austausch\gisela\vmListe.json chaos
         // S:\Austausch\gisela\rahmenduebel.json ordnung
-        // BeispielJSON
+        // C:\Users\gisela.wolf\JSON Editor\EinfachstesJSON.json
 
     }
 
