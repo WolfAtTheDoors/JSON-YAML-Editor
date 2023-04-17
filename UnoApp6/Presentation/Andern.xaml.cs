@@ -8,9 +8,12 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json.Nodes;
+using Uno;
+using Windows.ApplicationModel.Email.DataProvider;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using static System.Net.Mime.MediaTypeNames;
+
 
 namespace UnoApp6.Presentation {
 
@@ -33,11 +36,6 @@ namespace UnoApp6.Presentation {
 
         private void Ubernehmen(object sender, RoutedEventArgs e) {
 
-            //eingegebene Werte
-            //string a = alterName.Text;
-            //string b = neuerName.Text;
-            //string c = neuerWert.Text;
-
             // S:\Austausch\gisela\vmListe.json chaos
             // S:\Austausch\gisela\rahmenduebel.json ordnung
             // C:\Users\gisela.wolf\JSON Editor\EinfachstesJSON.json
@@ -45,23 +43,55 @@ namespace UnoApp6.Presentation {
             //Deserialize
             JObject jsonObject = JObject.Parse(jsonData.Text);
 
-            //Wert zu neuer Wert ändern
-            if (neuerWert.Text is string && !string.IsNullOrWhiteSpace(neuerWert.Text)) {
+
+            //eigenschaft entfernen !
+            if ((!string.IsNullOrEmpty(alterName.Text)) && string.IsNullOrEmpty(neuerName.Text) && string.IsNullOrEmpty(neuerWert.Text)) {
+                jsonObject.Remove(alterName.Text);
+            }
+
+
+
+            //eigenschaft hinzufügen (name) X
+            if (string.IsNullOrEmpty(alterName.Text)) {
+                jsonObject[neuerName.Text] = neuerWert.Text;
+            }
+
+
+            //namen ersetzen !
+            if ((!string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text)) && string.IsNullOrEmpty(neuerWert.Text)) {
+                jsonData.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                jsonData.Text = jsonData.Text.Replace(alterName.Text, neuerName.Text);
+                jsonObject = JObject.Parse(jsonData.Text);
+            }
+
+            //Wert ersetzen !
+            if ((!string.IsNullOrEmpty(alterName.Text)) && string.IsNullOrEmpty(neuerName.Text) && (!string.IsNullOrEmpty(neuerWert.Text))) {
                 jsonObject[alterName.Text] = neuerWert.Text;
             }
-            //ganze Eigenschaft entfernen
+
+            //alles ändern !
+            if (!string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text) && !string.IsNullOrEmpty(neuerWert.Text)) {
+                jsonObject[alterName.Text] = neuerWert.Text;
+                jsonData.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                jsonData.Text = jsonData.Text.Replace(alterName.Text, neuerName.Text);
+                jsonObject = JObject.Parse(jsonData.Text);
+            }
+
+            /*
+            
+                jsonObject[alterName.Text] = neuerWert.Text;
 
 
+                jsonData.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                jsonData.Text = jsonData.Text.Replace(alterName.Text, neuerName.Text);
+                JObject jsonObject = JObject.Parse(jsonData.Text);
+
+            */
 
             //Kopieren und Einfügen
 
-
-            //Namen ändern und zurück serialisieren
-
-            jsonData.Text = JsonConvert.SerializeObject(jsonObject, Newtonsoft.Json.Formatting.Indented);
-            if (neuerName.Text is string && !string.IsNullOrWhiteSpace(neuerName.Text)) {
-                jsonData.Text = jsonData.Text.Replace(alterName.Text, neuerName.Text);
-            }
+            //zurück serialisieren
+            jsonData.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
 
 
 
