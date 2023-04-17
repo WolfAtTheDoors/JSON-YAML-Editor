@@ -22,14 +22,14 @@ namespace UnoApp6.Presentation {
         private void GoToJSONListe(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(JSONListe));
         }
-
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
-
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Bestaetigen));
         }
+        //in neuer Datei speichern
+        //in gleicher Datei speichern
 
         private void Ubernehmen(object sender, RoutedEventArgs e) {
 
@@ -38,35 +38,32 @@ namespace UnoApp6.Presentation {
             //string b = neuerName.Text;
             //string c = neuerWert.Text;
 
+            // S:\Austausch\gisela\vmListe.json chaos
+            // S:\Austausch\gisela\rahmenduebel.json ordnung
+            // C:\Users\gisela.wolf\JSON Editor\EinfachstesJSON.json
+
             //Deserialize
             JObject jsonObject = JObject.Parse(jsonData.Text);
 
-            //change Wert to neuer Wert
-            jsonObject[alterName.Text] = neuerWert.Text;
-
-            //Namen ändern
-
-            //void renameKey(object jsonObject, string alterName, string neuerName) {
-            //    jsonObject[neuerName.Text] = jsonObject[alterName.Text];
-            //    jsonObject[alterName.Text].Remove();
-            //}
-
-            //if (neuerName.Text is string && !string.IsNullOrWhiteSpace(neuerName.Text)) {
-
-            //    renameKey(jsonObject, alterName.Text, neuerName.Text);
-
-            //}
-
-            //ganze eigenschaft entfernen
+            //Wert zu neuer Wert ändern
+            if (neuerWert.Text is string && !string.IsNullOrWhiteSpace(neuerWert.Text)) {
+                jsonObject[alterName.Text] = neuerWert.Text;
+            }
+            //ganze Eigenschaft entfernen
 
 
-            //Serialise for display
-            jsonData.Text = jsonObject.ToString();
-            jsonData.Text.Replace(alterName.Text, neuerName.Text);
+
+            //Kopieren und Einfügen
 
 
-            //in neuer Datei speichern
-            //in gleicher Datei speichern
+            //Namen ändern und zurück serialisieren
+
+            jsonData.Text = JsonConvert.SerializeObject(jsonObject, Newtonsoft.Json.Formatting.Indented);
+            if (neuerName.Text is string && !string.IsNullOrWhiteSpace(neuerName.Text)) {
+                jsonData.Text = jsonData.Text.Replace(alterName.Text, neuerName.Text);
+            }
+
+
 
             this.Frame.Navigate(typeof(Andern), jsonData.Text);
         }

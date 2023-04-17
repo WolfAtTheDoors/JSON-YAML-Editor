@@ -19,6 +19,12 @@ namespace UnoApp6.Presentation {
         private void GoToOffnen(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Offnen), jsonData.Text);
         }
+
+        private void GoToBestaetigen(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(Bestaetigen));
+        }
+
+
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
