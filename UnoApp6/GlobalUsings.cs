@@ -23,4 +23,5 @@ global using Windows.ApplicationModel;
 global using Application = Microsoft.UI.Xaml.Application;
 global using ApplicationExecutionState = Windows.ApplicationModel.Activation.ApplicationExecutionState;
 
-
+global using System.Text;
+global using System.Text.Json;

@@ -7,7 +7,7 @@ namespace UnoApp6.Presentation {
         public string? Title { get; }
 
         [ObservableProperty]
-        private string? name;
+        public string? name;
 
         public ICommand GoToSecond { get; }
 
