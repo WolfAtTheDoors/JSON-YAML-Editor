@@ -26,6 +26,12 @@ namespace UnoApp6.Presentation {
             this.Frame.Navigate(typeof(JSONListe));
         }
 
+        private void speichern(object sender, RoutedEventArgs e) {
+            File.WriteAllText(@"C:\Users\gisela.wolf\Projekte\TestDatei.json", jsonData.Text);
+            _ = this.Navigator()?.NavigateBackAsync(this);
+
+        }
+
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }

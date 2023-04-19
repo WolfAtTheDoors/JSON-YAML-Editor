@@ -46,6 +46,7 @@ namespace UnoApp6.Presentation {
         // S:\Austausch\gisela\vmListe.json chaos
         // S:\Austausch\gisela\rahmenduebel.json ordnung
         // C:\Users\gisela.wolf\JSON Editor\EinfachstesJSON.json
+        //  C:\Users\gisela.wolf\Projekte\TestDatei.json
 
     }
 
@@ -127,56 +128,6 @@ namespace UnoApp6.Presentation {
 
 }
 
-
-
-namespace BeispielJSON {
-    public class Studenten {
-        public string? nachname { get; set; }
-
-    }
-    public class Universitäten {
-        public string? universität { get; set; }
-
-        public IList<Studenten>? studenten { get; set; }
-
-    }
-    public class KlassenUnis {
-
-        public Universitäten? universitäten { get; set; }
-
-    }
-
-    class Program {
-
-        static void UniProgram() {
-
-            KlassenUnis KlassenUni1 = new KlassenUnis();
-
-            KlassenUni1.universitäten = new Universitäten();
-            KlassenUni1.universitäten.universität = "KIT";
-
-            List<Studenten> studenten = new List<Studenten>();
-            Studenten studenten1 = new Studenten {
-                nachname = "Wolf"
-            };
-            Studenten studenten2 = new Studenten {
-                nachname = "Schmidt"
-            };
-            Studenten studenten3 = new Studenten {
-                nachname = "Sailer"
-            };
-
-            studenten.Add(studenten1);
-            studenten.Add(studenten2);
-            studenten.Add(studenten3);
-
-            string BeispielJSON = JsonConvert.SerializeObject(KlassenUni1);
-
-
-        }
-    }
-
-}
 
 
 
