@@ -26,6 +26,8 @@ namespace UnoApp6.Presentation {
             this.Frame.Navigate(typeof(JSONListe));
         }
 
+        Test
+
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
