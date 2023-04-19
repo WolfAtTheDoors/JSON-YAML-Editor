@@ -49,13 +49,10 @@ namespace UnoApp6.Presentation {
                 jsonObject.Remove(alterName.Text);
             }
 
-
-
             //eigenschaft hinzufügen (name) X
             if (string.IsNullOrEmpty(alterName.Text)) {
                 jsonObject[neuerName.Text] = neuerWert.Text;
             }
-
 
             //namen ersetzen !
             if ((!string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text)) && string.IsNullOrEmpty(neuerWert.Text)) {
