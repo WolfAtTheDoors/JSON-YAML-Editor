@@ -43,10 +43,12 @@
                     </utu:AutoLayout>
 
                     <!-- kopieren button-->
-                    <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="146,220,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104" Height="40">
+                    <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="136,220,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104" Height="40">
                         <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
-                            <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal" utu:AutoLayout.PrimaryAlignment="Stretch">
-                                <TextBlock TextAlignment="Center" Text="Kopieren" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                            <utu:AutoLayout Padding="16,0,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal" utu:AutoLayout.PrimaryAlignment="Stretch">
+                                <Button Click="kopieren">
+                                    <TextBlock TextAlignment="Center" Text="Kopieren" utu:AutoLayout.PrimaryAlignment="Auto" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                                </Button>
                             </utu:AutoLayout>
                         </utu:AutoLayout>
                     </utu:AutoLayout>
@@ -55,7 +57,11 @@
                     <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="270,220,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Height="40">
                         <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
                             <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal" utu:AutoLayout.PrimaryAlignment="Stretch">
-                                <TextBlock TextAlignment="Center" Text="Einfügen" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                                <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start" utu:AutoLayout.PrimaryAlignment="Stretch" Width="101">
+                                    <HyperlinkButton Click="einfügen">
+                                        <TextBlock TextAlignment="Center" Text="Einfügen" utu:AutoLayout.IsIndependentLayout="True" Margin="-33,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="85" Height="20" Foreground="{ThemeResource PrimaryInverseBrush}" Style="{StaticResource LabelLarge}" />
+                                    </HyperlinkButton>
+                                </utu:AutoLayout>
                             </utu:AutoLayout>
                         </utu:AutoLayout>
                     </utu:AutoLayout>

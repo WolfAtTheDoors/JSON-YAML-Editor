@@ -33,7 +33,7 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
 
 
                 <!--Objekt Öffnen Button -->
-                <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="36,580.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="36,590.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
                         <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
                             <HyperlinkButton Click="GoToOffnen">
@@ -44,7 +44,7 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
                 </utu:AutoLayout>
 
                 <!--Objekt Ändern Button-->
-                <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="218,580.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="218,590.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.CounterAlignment="Start">
                         <utu:AutoLayout Padding="16,10,24,10" PrimaryAxisAlignment="Center" Orientation="Horizontal">
                             <HyperlinkButton Click="GoToAndern">
