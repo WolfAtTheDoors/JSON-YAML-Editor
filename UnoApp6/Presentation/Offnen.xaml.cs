@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,10 +10,12 @@ using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 
 namespace UnoApp6.Presentation {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class Offnen : Page {
+        public static JToken? jsonObject;
+        public static JToken? jsonObjectDesired;
+        public static string? jsonData = "default";
+
         public Offnen() {
             this.InitializeComponent();
         }
@@ -22,18 +26,45 @@ namespace UnoApp6.Presentation {
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
+        private void GoToJSONListe2(object sender, RoutedEventArgs e) {
+            int objektNummerInt = 0;
+
+            if (objektNummer != null) {
+                objektNummerInt = int.Parse(objektNummer.Text);
+            }
+            else {
+                jsonData = "Bitte gib eine richtige Objektnummer ein";
+            }
+
+            //grab the correct object (objectNummerInt from jsonData) and pass it back to JSONListe
+            //JContainer. beliebiger typ
+            jsonObject = JToken.Parse(jsonData!);
+
+            //array
+            if (jsonData!.Contains("[")) {
+                jsonObjectDesired = jsonObject[objektNummerInt];
+            }
+
+            //object
+            else if (jsonData!.Contains("{")) {
+                jsonObjectDesired = jsonObject[objektNummerInt];
+            }
+
+            //all else
+            else {
+                jsonObjectDesired = jsonObject;
+            }
+
+            jsonData = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
+            this.Frame.Navigate(typeof(JSONListe2), jsonData);
+        }
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
-            //string test1! = e.Parameter.ToString();
-            string test = objektNummer.Text;
-
-            //attempt to access the requested object using objektNummer.jsonData or something like that
-            //e is the formatted json from JSONListe
-
-
+            jsonData = e.Parameter.ToString();
             base.OnNavigatedTo(e);
-        }
 
+        }
     }
 }

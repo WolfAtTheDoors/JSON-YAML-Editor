@@ -22,12 +22,12 @@
 
                 <!-- Speichern -->
                 <HyperlinkButton Click="speichern">
-                    <TextBox Text="Ja" utu:AutoLayout.CounterAlignment="Center" Height="40" Style="{StaticResource TextButtonStyle}" />
+                    <TextBlock Text="Ja" utu:AutoLayout.CounterAlignment="Center" Height="40" Style="{StaticResource TextButtonStyle}" />
                 </HyperlinkButton>
 
                 <!-- Zurück -->
                 <HyperlinkButton Click="GoBack">
-                    <TextBox Text="Nein" utu:AutoLayout.CounterAlignment="Center" Height="40" Style="{StaticResource TextButtonStyle}" />
+                    <TextBlock Text="Nein" utu:AutoLayout.CounterAlignment="Center" Height="40" Style="{StaticResource TextButtonStyle}" />
                 </HyperlinkButton>
 
             </utu:AutoLayout>

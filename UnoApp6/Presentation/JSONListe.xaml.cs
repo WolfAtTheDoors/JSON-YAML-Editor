@@ -4,10 +4,10 @@ using Windows.Management.Deployment.Preview;
 
 namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
+        public static string dateiPfad = "C:\\Users\\gisela.wolf\\Projekte\\default.json";
 
         public JSONListe() {
             this.InitializeComponent();
-
         }
 
         private void GoToMainPage(object sender, RoutedEventArgs e) {
@@ -19,12 +19,9 @@ namespace UnoApp6.Presentation {
         private void GoToOffnen(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Offnen), jsonData.Text);
         }
-
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Bestaetigen));
+            this.Frame.Navigate(typeof(Bestaetigen), jsonData.Text);
         }
-
-
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
@@ -35,18 +32,19 @@ namespace UnoApp6.Presentation {
                 dateiName.Text = e.Parameter.ToString();
                 jsonData.Text = File.ReadAllText(dateiName.Text!);
 
+                if (dateiName.Text != null) {
+                    dateiPfad = dateiName.Text;
+                }
             }
+
 
             else {
                 dateiName.Text = "Bitte gib einen gültigen Dateipfad ein!";
             }
+
             base.OnNavigatedTo(e);
         }
 
-        // S:\Austausch\gisela\vmListe.json chaos
-        // S:\Austausch\gisela\rahmenduebel.json ordnung
-        // C:\Users\gisela.wolf\JSON Editor\EinfachstesJSON.json
-        //  C:\Users\gisela.wolf\Projekte\TestDatei.json
 
     }
 

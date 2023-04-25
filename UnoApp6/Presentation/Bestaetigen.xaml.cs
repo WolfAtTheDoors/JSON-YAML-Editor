@@ -27,15 +27,24 @@ namespace UnoApp6.Presentation {
         }
 
         private void speichern(object sender, RoutedEventArgs e) {
-            File.WriteAllText(@"C:\Users\gisela.wolf\Projekte\TestDatei.json", jsonData.Text);
+
+            File.WriteAllText(JSONListe.dateiPfad, jsonData.Text);
+
             _ = this.Navigator()?.NavigateBackAsync(this);
 
+            //@"C:\Users\gisela.wolf\Projekte\TestDatei.json"
         }
 
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+
+            jsonData.Text = e.Parameter.ToString();
+
+            base.OnNavigatedTo(e);
+        }
 
     }
 }
