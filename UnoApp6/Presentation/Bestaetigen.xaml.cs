@@ -22,11 +22,9 @@ namespace UnoApp6.Presentation {
             this.InitializeComponent();
         }
 
-
         private void GoToJSONListe(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(JSONListe));
         }
-
 
         private void speichern(object sender, RoutedEventArgs e) {
 
@@ -37,13 +35,9 @@ namespace UnoApp6.Presentation {
             //@"C:\Users\gisela.wolf\Projekte\TestDatei.json"
         }
 
-
-
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
-
-
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
@@ -51,8 +45,6 @@ namespace UnoApp6.Presentation {
 
             base.OnNavigatedTo(e);
         }
-
-
 
     }
 }

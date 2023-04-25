@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0168: Variable ist deklariert, wird jedoch niemals verwendet
+dotnet_diagnostic.CS0168.severity = silent

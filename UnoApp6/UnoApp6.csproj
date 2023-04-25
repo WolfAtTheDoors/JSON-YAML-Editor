@@ -62,6 +62,7 @@
 	<ItemGroup>
 		<None Remove="Presentation\Andern.xaml" />
 		<None Remove="Presentation\Bestaetigen.xaml" />
+		<None Remove="Presentation\JSONListe2.xaml" />
 		<None Remove="Presentation\Offnen.xaml" />
 	</ItemGroup>
 
@@ -69,7 +70,18 @@
 		<UpToDateCheckInput Remove="Presentation\Andern.xaml" />
 		<UpToDateCheckInput Remove="Presentation\Bestaetigen.xaml" />
 		<UpToDateCheckInput Remove="Presentation\JSONListe.xaml" />
+		<UpToDateCheckInput Remove="Presentation\JSONListe2.xaml" />
 		<UpToDateCheckInput Remove="Presentation\Offnen.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Presentation\JSONListe2.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
 	</ItemGroup>
 
 

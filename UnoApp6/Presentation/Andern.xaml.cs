@@ -24,7 +24,7 @@ namespace UnoApp6.Presentation {
 
         //public static JObject jsonObject = JObject.Parse(jsonData.Text);
         // C:\Users\gisela.wolf\Projekte\vmListe.json array
-        // C:\Users\gisela.wolf\Projekte\rahmenduebel.json ordnung
+        // C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
         // C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
         //  C:\Users\gisela.wolf\Projekte\TestDatei.json
 
