@@ -14,18 +14,17 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace UnoApp6.Presentation {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class Bestaetigen : Page {
         public Bestaetigen() {
             this.InitializeComponent();
         }
 
+        //JSONListe.jsonDataOriginal;  keeps the original file in order to add the changes to it
+
         private void GoToJSONListe(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(JSONListe));
         }
-
         private void speichern(object sender, RoutedEventArgs e) {
 
             File.WriteAllText(JSONListe.dateiPfad, jsonData.Text);
@@ -34,11 +33,9 @@ namespace UnoApp6.Presentation {
 
             //@"C:\Users\gisela.wolf\Projekte\TestDatei.json"
         }
-
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
             jsonData.Text = e.Parameter.ToString();

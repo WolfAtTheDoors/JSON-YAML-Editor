@@ -11,17 +11,16 @@ namespace UnoApp6.Presentation {
             this.InitializeComponent();
         }
 
-        private void GoToMainPage(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(MainPage));
-        }
         private void GoToAndern(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Andern), jsonData.Text);
         }
         private void GoToOffnen(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Offnen), jsonData.Text);
+            _ = this.Navigator()?.NavigateViewAsync<Offnen>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
+            //this.Frame.Navigate(typeof(Offnen), jsonData.Text);
         }
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Bestaetigen), jsonData.Text);
+            _ = this.Navigator()?.NavigateViewAsync<Bestaetigen>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
+            //this.Frame.Navigate(typeof(Bestaetigen), jsonData.Text);
         }
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
@@ -38,7 +37,6 @@ namespace UnoApp6.Presentation {
                     dateiPfad = dateiName.Text;
                 }
             }
-
 
             else {
                 dateiName.Text = "Bitte gib einen gültigen Dateipfad ein!";

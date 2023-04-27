@@ -22,15 +22,15 @@ namespace UnoApp6.Presentation {
             this.InitializeComponent();
         }
 
-        private void GoToAndern(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Andern), objektNummerName.Text);
-        }
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
         private void GoToJSONListe2(object sender, RoutedEventArgs e) {
             int objektNummerInt = 0;
             string objektNameString = "";
+
+            //deserialize
+            jsonObject = JToken.Parse(jsonData!);
 
             //input is arraynumber or objectname
             if (objektNummerName.Text.All(char.IsDigit)) {
@@ -39,9 +39,6 @@ namespace UnoApp6.Presentation {
             else {
                 objektNameString = objektNummerName.Text;
             }
-
-            //deserialize
-            jsonObject = JToken.Parse(jsonData!);
 
             //array
             if (jsonObject is JArray) {

@@ -22,6 +22,8 @@ namespace UnoApp6.Presentation {
         public static string kopierterName = "Hello";
         public static string? kopierteEigenschaft = "World";
 
+        //JSONListe.jsonDataOriginal;  keeps the original file in order to add the changes to it
+
         public static JObject? jsonObject;
 
         //public static JObject jsonObject = JObject.Parse(jsonData.Text);
@@ -41,7 +43,8 @@ namespace UnoApp6.Presentation {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Bestaetigen), jsonData.Text);
+            _ = this.Navigator()?.NavigateViewAsync<Bestaetigen>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
+            //this.Frame.Navigate(typeof(Bestaetigen), jsonData.Text);
         }
         private void Ubernehmen(object sender, RoutedEventArgs e) {
             //Deserialize
