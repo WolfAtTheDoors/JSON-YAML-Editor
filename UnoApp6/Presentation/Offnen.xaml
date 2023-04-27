@@ -18,8 +18,8 @@
         <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" CornerRadius="28">
             <utu:AutoLayout Spacing="16" Padding="16">
 
-                <!--Objektnummer eingeben-->
-                <TextBox Text="" PlaceholderText="Objekt Nummer" Style="{StaticResource OutlinedTextBoxStyle}" Name="objektNummer"/>
+                <!--Objektnummer oder name eingeben-->
+                <TextBox Text="" PlaceholderText="Objekt Nummer oder Name" Style="{StaticResource OutlinedTextBoxStyle}" x:Name="objektNummerName"/>
                 <utu:AutoLayout Orientation="Horizontal" Height="40">
 
                     <utu:AutoLayout Spacing="8" Padding="24,0,24,24" PrimaryAxisAlignment="End" Orientation="Horizontal">

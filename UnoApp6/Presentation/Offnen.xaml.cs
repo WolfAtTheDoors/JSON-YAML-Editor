@@ -8,6 +8,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace UnoApp6.Presentation {
 
@@ -21,44 +23,56 @@ namespace UnoApp6.Presentation {
         }
 
         private void GoToAndern(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Andern), objektNummer);
+            this.Frame.Navigate(typeof(Andern), objektNummerName.Text);
         }
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
         private void GoToJSONListe2(object sender, RoutedEventArgs e) {
             int objektNummerInt = 0;
+            string objektNameString = "";
 
-            if (objektNummer != null) {
-                objektNummerInt = int.Parse(objektNummer.Text);
+            //input is arraynumber or objectname
+            if (objektNummerName.Text.All(char.IsDigit)) {
+                objektNummerInt = int.Parse(objektNummerName.Text);
             }
             else {
-                jsonData = "Bitte gib eine richtige Objektnummer ein";
+                objektNameString = objektNummerName.Text;
             }
 
-            //grab the correct object (objectNummerInt from jsonData) and pass it back to JSONListe
-            //JContainer. beliebiger typ
+            //deserialize
             jsonObject = JToken.Parse(jsonData!);
 
             //array
-            if (jsonData!.Contains("[")) {
-                jsonObjectDesired = jsonObject[objektNummerInt];
-            }
+            if (jsonObject is JArray) {
+                var jsonObject2 = jsonObject as JArray;
 
+                if (objektNummerInt <= ((int)jsonObject2!.Count) - 1) {
+                    jsonObjectDesired = jsonObject[objektNummerInt];
+                }
+                else {
+                    jsonObjectDesired = "So viele Objekte hat das Array nicht.";
+                }
+            }
             //object
-            else if (jsonData!.Contains("{")) {
-                jsonObjectDesired = jsonObject[objektNummerInt];
+            else if (jsonObject is JObject) {
+                jsonObjectDesired = jsonObject[objektNameString];
             }
-
             //all else
             else {
                 jsonObjectDesired = jsonObject;
             }
 
-            jsonData = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
+            //serialize
+            if (!(jsonObjectDesired is null)) {
+                jsonData = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
+            }
+            else {
+                jsonData = "Bitte das Objekt mit einer Nummer (im Array) oder mit dem Namen (im Objekt) aufrufen.";
+            }
+
             this.Frame.Navigate(typeof(JSONListe2), jsonData);
         }
-
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
@@ -68,3 +82,9 @@ namespace UnoApp6.Presentation {
         }
     }
 }
+
+
+// C:\Users\gisela.wolf\Projekte\vmListe.json array
+// C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
+// C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
+//  C:\Users\gisela.wolf\Projekte\TestDatei.json

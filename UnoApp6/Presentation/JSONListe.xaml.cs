@@ -5,6 +5,7 @@ using Windows.Management.Deployment.Preview;
 namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
         public static string dateiPfad = "C:\\Users\\gisela.wolf\\Projekte\\default.json";
+        public static string? jsonDataOriginal;  //keeps the original file in order to add the changes to it
 
         public JSONListe() {
             this.InitializeComponent();
@@ -31,6 +32,7 @@ namespace UnoApp6.Presentation {
 
                 dateiName.Text = e.Parameter.ToString();
                 jsonData.Text = File.ReadAllText(dateiName.Text!);
+                jsonDataOriginal = File.ReadAllText(dateiName.Text!);
 
                 if (dateiName.Text != null) {
                     dateiPfad = dateiName.Text;
