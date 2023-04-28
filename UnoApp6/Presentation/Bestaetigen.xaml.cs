@@ -27,7 +27,7 @@ namespace UnoApp6.Presentation {
         }
         private void speichern(object sender, RoutedEventArgs e) {
 
-            File.WriteAllText(JSONListe.dateiPfad, jsonData.Text);
+            File.WriteAllText(JSONListe.dateiPfad, jsonData.Text);          //<-- hier wird die gesamte JSON gespeichert
 
             _ = this.Navigator()?.NavigateBackAsync(this);
 

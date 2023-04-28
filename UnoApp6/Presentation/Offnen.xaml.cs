@@ -18,6 +18,10 @@ namespace UnoApp6.Presentation {
         public static JToken? jsonObjectDesired;
         public static string? jsonData = "default";
 
+        public static List<string> objektNameNummerListe = new List<string>();
+
+        public static int OpenObjectCounter = -1;
+
         public Offnen() {
             this.InitializeComponent();
         }
@@ -26,35 +30,35 @@ namespace UnoApp6.Presentation {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
         private void GoToJSONListe2(object sender, RoutedEventArgs e) {
-            int objektNummerInt = 0;
-            string objektNameString = "";
 
             //deserialize
             jsonObject = JToken.Parse(jsonData!);
 
-            //input is arraynumber or objectname
-            if (objektNummerName.Text.All(char.IsDigit)) {
-                objektNummerInt = int.Parse(objektNummerName.Text);
-            }
-            else {
-                objektNameString = objektNummerName.Text;
-            }
+            //input is Arraynumber or Objektname. Add to Liste, count openobjectcounter. This list provides the adress later for saving to the entire JSON
+            objektNameNummerListe.Add(objektNummerName.Text);
+            OpenObjectCounter++;
 
             //array
-            if (jsonObject is JArray) {
-                var jsonObject2 = jsonObject as JArray;
-
-                if (objektNummerInt <= ((int)jsonObject2!.Count) - 1) {
-                    jsonObjectDesired = jsonObject[objektNummerInt];
+            if (jsonObject is JArray) {                                                                                 //Wenn das Objekt ein Array ist,
+                var jsonObjectArray = jsonObject as JArray;
+                if (objektNameNummerListe[OpenObjectCounter].All(char.IsDigit)) {                                       //muss es mit einem integer angesprochen werden,
+                    if (int.Parse(objektNameNummerListe[OpenObjectCounter]) <= ((int)jsonObjectArray!.Count) - 1) {     //der kleiner gleich der Anzahl der Objekte im Array ist
+                        jsonObjectDesired = jsonObjectArray[int.Parse(objektNameNummerListe[OpenObjectCounter])];
+                    }
+                    else {
+                        jsonObjectDesired = "So viele Objekte hat das Array nicht.";
+                    }
                 }
                 else {
-                    jsonObjectDesired = "So viele Objekte hat das Array nicht.";
+                    jsonObjectDesired = "Dieses Objekt ist ein Array und muss mit einer Nummer aufgerufen werden";
                 }
             }
+
             //object
             else if (jsonObject is JObject) {
-                jsonObjectDesired = jsonObject[objektNameString];
+                jsonObjectDesired = jsonObject[objektNameNummerListe[OpenObjectCounter]];
             }
+
             //all else
             else {
                 jsonObjectDesired = jsonObject;
@@ -74,6 +78,7 @@ namespace UnoApp6.Presentation {
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
             jsonData = e.Parameter.ToString();
+
             base.OnNavigatedTo(e);
 
         }

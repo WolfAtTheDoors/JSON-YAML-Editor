@@ -64,6 +64,7 @@
 		<None Remove="Presentation\Andern.xaml" />
 		<None Remove="Presentation\Bestaetigen.xaml" />
 		<None Remove="Presentation\JSONListe2.xaml" />
+		<None Remove="Presentation\JSONListe3.xaml" />
 		<None Remove="Presentation\Offnen.xaml" />
 	</ItemGroup>
 
@@ -72,6 +73,7 @@
 		<UpToDateCheckInput Remove="Presentation\Bestaetigen.xaml" />
 		<UpToDateCheckInput Remove="Presentation\JSONListe.xaml" />
 		<UpToDateCheckInput Remove="Presentation\JSONListe2.xaml" />
+		<UpToDateCheckInput Remove="Presentation\JSONListe3.xaml" />
 		<UpToDateCheckInput Remove="Presentation\Offnen.xaml" />
 	</ItemGroup>
 
@@ -80,6 +82,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Page Update="Presentation\JSONListe3.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
 	  <Page Update="Presentation\JSONListe2.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>

@@ -6,19 +6,19 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
-  x:Class="UnoApp6.Presentation.JSONListe"  
+  x:Class="UnoApp6.Presentation.JSONListe3"  
   mc:Ignorable="d" Background="{ThemeResource BackgroundBrush}" 
   NavigationCacheMode="Required"
   x:Name="objektNummer"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 
     <Grid>
-        <TextBlock x:Name="pageTitle" Text="JSONListe" />
+        <TextBlock x:Name="pageTitle" Text="JSONListe3" />
 
-        <!--Darstellung Dateiname -->
+        <!--Darstellung Objektnummer -->
         <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="Deine JSON" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="dateiName"/>
+                <TextBlock Text="JSON hier speichern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="dateiName"/>
             </utu:AutoLayout>
 
             <!--Darstellung der Seite -->

@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using Windows.Management.Deployment.Preview;
 
+//JSONListe stellt immer nur die ganze JSON dar. Alle unterobjekte sind immer in JSONListe2
+
 namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
         public static string dateiPfad = "C:\\Users\\gisela.wolf\\Projekte\\default.json";
@@ -11,6 +13,9 @@ namespace UnoApp6.Presentation {
             this.InitializeComponent();
         }
 
+        private void GoBack(object sender, RoutedEventArgs e) {
+            _ = this.Navigator()?.NavigateBackAsync(this);
+        }
         private void GoToAndern(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Andern), jsonData.Text);
         }
@@ -18,13 +23,12 @@ namespace UnoApp6.Presentation {
             _ = this.Navigator()?.NavigateViewAsync<Offnen>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
             //this.Frame.Navigate(typeof(Offnen), jsonData.Text);
         }
+
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            _ = this.Navigator()?.NavigateViewAsync<Bestaetigen>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
-            //this.Frame.Navigate(typeof(Bestaetigen), jsonData.Text);
+            _ = this.Navigator()?.NavigateViewAsync<JSONListe3>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
+
         }
-        private void GoBack(object sender, RoutedEventArgs e) {
-            _ = this.Navigator()?.NavigateBackAsync(this);
-        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter)) {
@@ -45,8 +49,9 @@ namespace UnoApp6.Presentation {
             base.OnNavigatedTo(e);
         }
 
-
     }
+
+
 
     class JsonHelper {
         private const string INDENT_STRING = "    ";
@@ -115,7 +120,6 @@ namespace UnoApp6.Presentation {
             return sb.ToString();
         }
     }
-
     static class Extensions {
         public static void ForEach<T>(this IEnumerable<T> ie, Action<T> action) {
             foreach (var i in ie) {
@@ -123,7 +127,6 @@ namespace UnoApp6.Presentation {
             }
         }
     }
-
 }
 
 
