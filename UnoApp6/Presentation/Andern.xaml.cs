@@ -1,46 +1,33 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json.Nodes;
-using Uno;
-using Windows.ApplicationModel.Email.DataProvider;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using static System.Net.Mime.MediaTypeNames;
+// C:\Users\gisela.wolf\Projekte\vmListe.json array
+// C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
+// C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
+// C:\Users\gisela.wolf\Projekte\TestDatei.json
 
 namespace UnoApp6.Presentation {
 
     public sealed partial class Andern : Page {
         public static string kopierterName = "Hello";
         public static string? kopierteEigenschaft = "World";
+        //JSONListe.jsonDataOriginal;  keeps the original file in order to add the changes to it
 
         public static JObject? jsonObject;
-
-        //public static JObject jsonObject = JObject.Parse(jsonData.Text);
-        // C:\Users\gisela.wolf\Projekte\vmListe.json array
-        // C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
-        // C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
-        //  C:\Users\gisela.wolf\Projekte\TestDatei.json
 
         public Andern() {
             this.InitializeComponent();
         }
 
-        private void GoToJSONListe(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(JSONListe));
-        }
+        //private void GoToJSONListe(object sender, RoutedEventArgs e) {
+        //    this.Frame.Navigate(typeof(JSONListe));
+        //}
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(Bestaetigen), jsonData.Text);
-        }
+            _ = this.Navigator()?.NavigateViewAsync<JSONListe3>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
+
+        }    //<-- passes on the altered object to JSONListe 3
         private void Ubernehmen(object sender, RoutedEventArgs e) {
             //Deserialize
             jsonObject = JObject.Parse(jsonData.Text);
@@ -101,20 +88,16 @@ namespace UnoApp6.Presentation {
 
             this.Frame.Navigate(typeof(Andern), jsonData.Text);
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e) {
-            if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter)) {
-                jsonData.Text = e.Parameter.ToString();
 
-            }
-            else {
-                jsonData.Text = "Bitte gib einen gültigen Dateipfad ein!";
-            }
+            jsonData.Text = e.Parameter.ToString();
+
             base.OnNavigatedTo(e);
         }
-
     }
 }
+
+
 
 
 

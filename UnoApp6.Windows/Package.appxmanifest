@@ -8,8 +8,8 @@
 
   <Identity
     Name="BB708969-4BC5-4704-A298-0D0EF27BA523"
-    Publisher="O=UnoApp6"
-    Version="1.0.0.0" />
+    Publisher="CN=Gisela.Wolf"
+    Version="1.0.8.0" />
 
   <Properties>
 	<DisplayName>UnoApp6</DisplayName>
