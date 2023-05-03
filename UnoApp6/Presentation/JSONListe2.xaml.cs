@@ -1,6 +1,7 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using Newtonsoft.Json;
-using Windows.Management.Deployment.Preview;
+﻿// C:\Users\gisela.wolf\Projekte\vmListe.json array
+// C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
+// C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
+//  C:\Users\gisela.wolf\Projekte\TestDatei.json
 
 namespace UnoApp6.Presentation {
     public sealed partial class JSONListe2 : Page {
@@ -11,8 +12,6 @@ namespace UnoApp6.Presentation {
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
-
-
         private void GoToAndern(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Andern), jsonData.Text);
         }
@@ -24,7 +23,6 @@ namespace UnoApp6.Presentation {
             _ = this.Navigator()?.NavigateViewAsync<JSONListe3>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
 
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
             jsonData.Text = e.Parameter.ToString();

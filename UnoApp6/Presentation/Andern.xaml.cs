@@ -1,24 +1,9 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json.Nodes;
-using Uno;
-using Windows.ApplicationModel.Email.DataProvider;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 // C:\Users\gisela.wolf\Projekte\vmListe.json array
 // C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
 // C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
-//  C:\Users\gisela.wolf\Projekte\TestDatei.json
+// C:\Users\gisela.wolf\Projekte\TestDatei.json
 
 namespace UnoApp6.Presentation {
 

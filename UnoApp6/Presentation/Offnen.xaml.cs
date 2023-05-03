@@ -1,26 +1,17 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using System.Text.RegularExpressions;
-using System.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+// C:\Users\gisela.wolf\Projekte\vmListe.json array
+// C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
+// C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
+// C:\Users\gisela.wolf\Projekte\TestDatei.json
 
 namespace UnoApp6.Presentation {
-
     public sealed partial class Offnen : Page {
         public static JToken? jsonObject;
         public static JToken? jsonObjectDesired;
         public static string? jsonData = "default";
 
         public static List<string> objektNameNummerListe = new List<string>();
-
-        public static int OpenObjectCounter = -1;
 
         public Offnen() {
             this.InitializeComponent();
@@ -34,16 +25,15 @@ namespace UnoApp6.Presentation {
             //deserialize
             jsonObject = JToken.Parse(jsonData!);
 
-            //input is Arraynumber or Objektname. Add to Liste, count openobjectcounter. This list provides the adress later for saving to the entire JSON
+            //input is Arraynumber or Objektname. Add to Liste, increase List.Count. This list provides the adress later for saving to the entire JSON
             objektNameNummerListe.Add(objektNummerName.Text);
-            OpenObjectCounter++;
 
             //array
-            if (jsonObject is JArray) {                                                                                 //Wenn das Objekt ein Array ist,
+            if (jsonObject is JArray) {                                                                                           //Wenn das Objekt ein Array ist,
                 var jsonObjectArray = jsonObject as JArray;
-                if (objektNameNummerListe[OpenObjectCounter].All(char.IsDigit)) {                                       //muss es mit einem integer angesprochen werden,
-                    if (int.Parse(objektNameNummerListe[OpenObjectCounter]) <= ((int)jsonObjectArray!.Count) - 1) {     //der kleiner gleich der Anzahl der Objekte im Array ist
-                        jsonObjectDesired = jsonObjectArray[int.Parse(objektNameNummerListe[OpenObjectCounter])];
+                if (objektNameNummerListe[objektNameNummerListe.Count - 1].All(char.IsDigit)) {                                   //muss es mit einem integer angesprochen werden,
+                    if (int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1]) <= ((int)jsonObjectArray!.Count)) {     //der kleiner gleich der Anzahl der Objekte im Array ist
+                        jsonObjectDesired = jsonObjectArray[int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1])];
                     }
                     else {
                         jsonObjectDesired = "So viele Objekte hat das Array nicht.";
@@ -56,7 +46,7 @@ namespace UnoApp6.Presentation {
 
             //object
             else if (jsonObject is JObject) {
-                jsonObjectDesired = jsonObject[objektNameNummerListe[OpenObjectCounter]];
+                jsonObjectDesired = jsonObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
             }
 
             //all else
@@ -86,7 +76,4 @@ namespace UnoApp6.Presentation {
 }
 
 
-// C:\Users\gisela.wolf\Projekte\vmListe.json array
-// C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
-// C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
-//  C:\Users\gisela.wolf\Projekte\TestDatei.json
+

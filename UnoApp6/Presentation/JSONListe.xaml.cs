@@ -1,8 +1,8 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using Newtonsoft.Json;
-using Windows.Management.Deployment.Preview;
-
-//JSONListe stellt immer nur die ganze JSON dar. Alle unterobjekte sind immer in JSONListe2
+﻿//JSONListe stellt immer nur die ganze JSON dar. Alle unterobjekte sind immer in JSONListe2
+// C:\Users\gisela.wolf\Projekte\vmListe.json array
+// C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
+// C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
+//  C:\Users\gisela.wolf\Projekte\TestDatei.json
 
 namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
@@ -23,7 +23,6 @@ namespace UnoApp6.Presentation {
             _ = this.Navigator()?.NavigateViewAsync<Offnen>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
             //this.Frame.Navigate(typeof(Offnen), jsonData.Text);
         }
-
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateViewAsync<JSONListe3>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
 
@@ -41,17 +40,13 @@ namespace UnoApp6.Presentation {
                     dateiPfad = dateiName.Text;
                 }
             }
-
             else {
                 dateiName.Text = "Bitte gib einen gültigen Dateipfad ein!";
             }
 
             base.OnNavigatedTo(e);
         }
-
     }
-
-
 
     class JsonHelper {
         private const string INDENT_STRING = "    ";
