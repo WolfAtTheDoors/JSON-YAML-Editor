@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-// C:\Users\gisela.wolf\Projekte\vmListe.json array
-// C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
-// C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
-// C:\Users\gisela.wolf\Projekte\TestDatei.json
 
 namespace UnoApp6.Presentation {
     public sealed partial class Offnen : Page {
@@ -20,13 +16,10 @@ namespace UnoApp6.Presentation {
         }
         private void GoToJSONListe(object sender, RoutedEventArgs e) {
 
-            //deserialize
+            //input ist Arraynummer oder Objektname. Diese Liste liefert später die Adresse, mit der änderungen gespeichert werden.
             jsonObject = JToken.Parse(jsonData!);
-
-            //input is Arraynumber or Objektname. Add to Liste, increase List.Count. This list provides the adress later for saving to the entire JSON
             objektNameNummerListe.Add(objektNummerName.Text);
 
-            //array
             if (jsonObject is JArray) {                                                                                           //Wenn das Objekt ein Array ist,
                 var jsonObjectArray = jsonObject as JArray;
                 if (objektNameNummerListe[objektNameNummerListe.Count - 1].All(char.IsDigit)) {                                   //muss es mit einem integer angesprochen werden,
@@ -38,22 +31,19 @@ namespace UnoApp6.Presentation {
                     }
                 }
                 else {
-                    jsonObjectDesired = "Dieses Objekt ist ein Array und muss mit einer Nummer aufgerufen werden";
+                    jsonObjectDesired = "Dieses Objekt ist ein Array und muss mit einem Integer aufgerufen werden.";
                 }
             }
 
-            //object
             else if (jsonObject is JObject) {
                 jsonObjectDesired = jsonObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
             }
 
-            //all else
             else {
                 jsonObjectDesired = jsonObject;
             }
 
-            //serialize
-            if (!(jsonObjectDesired is null)) {
+            if (jsonObjectDesired != null) {
                 jsonData = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
             }
             else {
@@ -72,6 +62,3 @@ namespace UnoApp6.Presentation {
         }
     }
 }
-
-
-

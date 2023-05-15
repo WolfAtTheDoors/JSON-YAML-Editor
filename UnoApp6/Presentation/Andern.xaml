@@ -1,7 +1,5 @@
-﻿<Page xmlns:uen="using:Uno.Extensions.Navigation.UI" 
-      xmlns:uer="using:Uno.Extensions.Reactive.UI" 
+﻿<Page  
       xmlns:utu="using:Uno.Toolkit.UI"
-      xmlns:muxc="using:Microsoft.UI.Xaml.Controls" xmlns:um="using:Uno.Material" 
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -13,7 +11,6 @@
 
     <Grid>
         <TextBlock x:Name="pageTitle" Text="Andern" />
-
 
         <utu:AutoLayout Background="{ThemeResource PrimaryInverseBrush}" Spacing="1">
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="66,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
@@ -83,9 +80,16 @@
                     </HyperlinkButton>
                 </utu:AutoLayout>
 
+                <!-- Go Home-->
+                <utu:AutoLayout utu:AutoLayout.CounterAlignment="Center" Width="35" Height="31.315788">
+                    <HyperlinkButton Click="GoHome">
+                        <Path Data="F1 M 11.666666412353516 22.182018280029297 L 11.666666412353516 14.353070651783664 L 17.499999618530275 14.353070651783664 L 17.499999618530275 22.182018280029297 L 24.791666126251222 22.182018280029297 L 24.791666126251222 11.74342144236845 L 29.16666603088379 11.74342144236845 L 14.583333015441895 0 L 0 11.74342144236845 L 4.374999904632569 11.74342144236845 L 4.374999904632569 22.182018280029297 L 11.666666412353516 22.182018280029297 Z" Fill="{ThemeResource OnSurfaceBrush}" utu:AutoLayout.IsIndependentLayout="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="29.166666" Height="22.182018" />
+                    </HyperlinkButton>
+                </utu:AutoLayout>
+
                 <!-- speichern button-->
                 <utu:AutoLayout utu:AutoLayout.CounterAlignment="Center" Width="24" Height="24">
-                    <HyperlinkButton Click="GoToBestaetigen">
+                    <HyperlinkButton Click="speichern">
                         <Path Data="F1 M 14 0 L 2 0 C 0.8899999856948853 0 0 0.8999999761581421 0 2 L 0 16 C 0 17.100000023841858 0.8899999856948853 18 2 18 L 16 18 C 17.100000023841858 18 18 17.100000023841858 18 16 L 18 4 L 14 0 Z M 9 16 C 7.340000033378601 16 6 14.659999966621399 6 13 C 6 11.340000033378601 7.340000033378601 10 9 10 C 10.659999966621399 10 12 11.340000033378601 12 13 C 12 14.659999966621399 10.659999966621399 16 9 16 Z M 12 6 L 2 6 L 2 2 L 12 2 L 12 6 Z" Fill="{ThemeResource OnSurfaceBrush}" utu:AutoLayout.IsIndependentLayout="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="18" Height="18" />
                     </HyperlinkButton>
                 </utu:AutoLayout>

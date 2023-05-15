@@ -1,32 +1,30 @@
 ﻿using Newtonsoft.Json.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UnoApp6.Presentation {
     public sealed partial class MainPage : Page {
         public MainPage() {
             this.InitializeComponent();
         }
-
         private void GoToJSONListe(object sender, RoutedEventArgs e) {
 
-            //validate input as not null, empty or whitespace
+            //validiert den Input als string, nicht leer und nicht null
             if (dateiName.Text is null || string.IsNullOrWhiteSpace((string)dateiName.Text)) {
                 Fehlermeldung.Text = "Bitte gib einen gültigen Dateipfad ein!";
                 this.Frame.Navigate(typeof(MainPage), Fehlermeldung.Text);
                 return;
             }
 
-            //validate as a filepath
+            //validiert den Dateipfad
             try {
                 string jsonData = File.ReadAllText(dateiName.Text!);
-                //validate file not empty
+                //validiert die Datei
                 if (jsonData == null) {
                     Fehlermeldung.Text = "Bitte gib einen gültigen Dateipfad ein!";
                     this.Frame.Navigate(typeof(MainPage), Fehlermeldung.Text);
                     return;
                 }
 
-                //valid JSON?
+                //validiert die JSON
                 if (!isJSON(jsonData)) {
                     Fehlermeldung.Text = "Bitte gib einen gültigen Dateipfad ein!";
                     this.Frame.Navigate(typeof(MainPage), Fehlermeldung.Text);
@@ -42,9 +40,6 @@ namespace UnoApp6.Presentation {
             }
         }
 
-        private void GoToMainPage(object sender, RoutedEventArgs e) {
-            this.Frame.Navigate(typeof(MainPage), Fehlermeldung.Text);
-        }
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
             if (e.Parameter != null) {
