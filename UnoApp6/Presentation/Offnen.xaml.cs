@@ -10,17 +10,15 @@ namespace UnoApp6.Presentation {
         public static JToken? jsonObject;
         public static JToken? jsonObjectDesired;
         public static string? jsonData = "default";
-
         public static List<string> objektNameNummerListe = new List<string>();
 
         public Offnen() {
             this.InitializeComponent();
         }
-
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
-        private void GoToJSONListe2(object sender, RoutedEventArgs e) {
+        private void GoToJSONListe(object sender, RoutedEventArgs e) {
 
             //deserialize
             jsonObject = JToken.Parse(jsonData!);
@@ -62,7 +60,7 @@ namespace UnoApp6.Presentation {
                 jsonData = "Bitte das Objekt mit einer Nummer (im Array) oder mit dem Namen (im Objekt) aufrufen.";
             }
 
-            this.Frame.Navigate(typeof(JSONListe2), jsonData);
+            this.Frame.Navigate(typeof(JSONListe), jsonData);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {

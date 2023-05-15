@@ -1,13 +1,13 @@
-﻿//JSONListe stellt immer nur die ganze JSON dar. Alle unterobjekte sind immer in JSONListe2
-// C:\Users\gisela.wolf\Projekte\vmListe.json array
+﻿// C:\Users\gisela.wolf\Projekte\vmListe.json array
 // C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
 // C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
-//  C:\Users\gisela.wolf\Projekte\TestDatei.json
+// C:\Users\gisela.wolf\Projekte\TestDatei.json
 
 namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
         public static string dateiPfad = "C:\\Users\\gisela.wolf\\Projekte\\default.json";
         public static string? jsonDataOriginal;  //keeps the original file in order to add the changes to it
+        public static string? Fehlermeldung = "!";
 
         public JSONListe() {
             this.InitializeComponent();
@@ -20,29 +20,25 @@ namespace UnoApp6.Presentation {
             this.Frame.Navigate(typeof(Andern), jsonData.Text);
         }
         private void GoToOffnen(object sender, RoutedEventArgs e) {
-            _ = this.Navigator()?.NavigateViewAsync<Offnen>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
-            //this.Frame.Navigate(typeof(Offnen), jsonData.Text);
+            //_ = this.Navigator()?.NavigateViewAsync<Offnen>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
+            this.Frame.Navigate(typeof(Offnen), jsonData.Text);
         }
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            _ = this.Navigator()?.NavigateViewAsync<JSONListe3>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
-
+            _ = this.Navigator()?.NavigateViewAsync<JSONListe2>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
-            if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter)) {
-
-                dateiName.Text = e.Parameter.ToString();
-                jsonData.Text = File.ReadAllText(dateiName.Text!);
-                jsonDataOriginal = File.ReadAllText(dateiName.Text!);
-
-                if (dateiName.Text != null) {
-                    dateiPfad = dateiName.Text;
-                }
+            string? dateiName = e.Parameter.ToString();
+            //dateiPfad = dateiName.Text!;
+            try {
+                jsonData.Text = File.ReadAllText(dateiName!);
+                jsonDataOriginal = jsonData.Text;
             }
-            else {
-                dateiName.Text = "Bitte gib einen gültigen Dateipfad ein!";
+            catch {
+                jsonData.Text = dateiName;
             }
+
 
             base.OnNavigatedTo(e);
         }
@@ -123,10 +119,4 @@ namespace UnoApp6.Presentation {
         }
     }
 }
-
-
-
-
-
-
 

@@ -1,16 +1,16 @@
 ﻿<Page xmlns:uen="using:Uno.Extensions.Navigation.UI" 
-xmlns:uer="using:Uno.Extensions.Reactive.UI"
+ xmlns:uer="using:Uno.Extensions.Reactive.UI"
  xmlns:utu="using:Uno.Toolkit.UI" 
  xmlns:muxc="using:Microsoft.UI.Xaml.Controls" 
  xmlns:um="using:Uno.Material" 
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
-  x:Class="UnoApp6.Presentation.JSONListe"  
-  mc:Ignorable="d" Background="{ThemeResource BackgroundBrush}" 
-  NavigationCacheMode="Required"
-  x:Name="objektNummer"
-  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+ x:Class="UnoApp6.Presentation.JSONListe"  
+ mc:Ignorable="d" Background="{ThemeResource BackgroundBrush}" 
+ NavigationCacheMode="Required"
+ x:Name="objektNummer"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 
     <Grid>
         <TextBlock x:Name="pageTitle" Text="JSONListe" />
@@ -18,19 +18,18 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
         <!--Darstellung Dateiname -->
         <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="Deine JSON" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="dateiName"/>
+                <TextBlock Text="Deine JSON" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="PlatzhalterDateiName" />
             </utu:AutoLayout>
 
             <!--Darstellung der Seite -->
             <utu:AutoLayout PrimaryAxisAlignment="Center" utu:AutoLayout.PrimaryAlignment="Stretch">
 
                 <!--Darstellung der JSON -->
-                <ScrollViewer utu:AutoLayout.PrimaryAlignment="Stretch" Height="673">
-                    <utu:AutoLayout Padding="600, 0" PrimaryAxisAlignment="Center">
+                <ScrollViewer utu:AutoLayout.PrimaryAlignment="Stretch" Height="553" VerticalAlignment="Top" >
+                    <utu:AutoLayout Padding="600, 0, 0, 0" PrimaryAxisAlignment="Center">
                         <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" Name="jsonData" />
                     </utu:AutoLayout>
                 </ScrollViewer>
-
 
                 <!--Objekt Öffnen Button -->
                 <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" CornerRadius="20" utu:AutoLayout.IsIndependentLayout="True" Margin="536,590.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -53,7 +52,6 @@ xmlns:uer="using:Uno.Extensions.Reactive.UI"
                         </utu:AutoLayout>
                     </utu:AutoLayout>
                 </utu:AutoLayout>
-
 
                 <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" Justify="SpaceBetween" Orientation="Horizontal" Height="44">
 

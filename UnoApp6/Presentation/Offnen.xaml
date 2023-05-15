@@ -9,7 +9,6 @@
       x:Class="UnoApp6.Presentation.Offnen" 
       mc:Ignorable="d" Background="{ThemeResource BackgroundBrush}" 
       NavigationCacheMode="Required"
-
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 
     <Grid>
@@ -25,7 +24,7 @@
                     <utu:AutoLayout Spacing="8" Padding="24,0,24,24" PrimaryAxisAlignment="End" Orientation="Horizontal">
 
                         <!--Öffnen-->
-                        <HyperlinkButton Click="GoToJSONListe2">
+                        <HyperlinkButton Click="GoToJSONListe">
                             <TextBlock Text="Öffnen" utu:AutoLayout.CounterAlignment="Start" Height="40" Style="{StaticResource TextButtonStyle}"/>
                         </HyperlinkButton>
 
@@ -39,6 +38,6 @@
                 </utu:AutoLayout>
             </utu:AutoLayout>
         </utu:AutoLayout>
-
     </Grid>
 </Page>
+

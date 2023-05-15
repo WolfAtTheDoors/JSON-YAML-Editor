@@ -1,18 +1,18 @@
-﻿<Page xmlns:uen="using:Uno.Extensions.Navigation.UI" 
-      xmlns:uer="using:Uno.Extensions.Reactive.UI" 
-      xmlns:utu="using:Uno.Toolkit.UI" 
+﻿<Page xmlns:uen="using:Uno.Extensions.Navigation.UI"
+      xmlns:uer="using:Uno.Extensions.Reactive.UI"
+      xmlns:utu="using:Uno.Toolkit.UI"
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-      xmlns:um="using:Uno.Material" 
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:um="using:Uno.Material"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       x:Class="UnoApp6.Presentation.MainPage"
-      mc:Ignorable="d" 
-      Background="{ThemeResource BackgroundBrush}" 
-      NavigationCacheMode="Required" 
+      mc:Ignorable="d"
+      Background="{ThemeResource BackgroundBrush}"
+      NavigationCacheMode="Required"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-    <Grid>
 
+    <Grid>
         <TextBlock x:Name="pageTitle" Text="MainPage" />
 
         <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
@@ -38,8 +38,16 @@
                 <!-- Dateipfad eingeben -->
                 <TextBox utu:AutoLayout.IsIndependentLayout="True" Margin="550,237,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="328" PlaceholderText="Datei Pfad eingeben" x:Name="dateiName" Style="{StaticResource OutlinedTextBoxStyle}" />
 
+                <!-- Fehlermeldung -->
+                <utu:AutoLayout utu:AutoLayout.IsIndependentLayout="True" Margin="500,137,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="350" Height="100">
+                    <TextBlock TextAlignment="Center" Text="" utu:AutoLayout.IsIndependentLayout="True" VerticalAlignment="Top" HorizontalAlignment="Left" Width="377" Height="148" Style="{StaticResource LabelLarge}" Name="Fehlermeldung"/>
+                </utu:AutoLayout>
+
             </utu:AutoLayout>
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="24,0,16,0" Justify="SpaceBetween" Orientation="Horizontal" Height="44" />
         </utu:AutoLayout>
     </Grid>
 </Page>
+
+   
+    

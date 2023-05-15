@@ -25,7 +25,7 @@ namespace UnoApp6.Presentation {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
         private void GoToBestaetigen(object sender, RoutedEventArgs e) {
-            _ = this.Navigator()?.NavigateViewAsync<JSONListe3>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
+            _ = this.Navigator()?.NavigateViewAsync<JSONListe2>(this, qualifier: Qualifiers.Dialog, jsonData.Text);
 
         }    //<-- passes on the altered object to JSONListe 3
         private void Ubernehmen(object sender, RoutedEventArgs e) {
