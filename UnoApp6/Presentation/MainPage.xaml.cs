@@ -1,7 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
+using System.Dynamic;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace UnoApp6.Presentation {
     public sealed partial class MainPage : Page {
+        public static bool fileIsYAML = false;
+
         public MainPage() {
             this.InitializeComponent();
         }
@@ -17,6 +22,7 @@ namespace UnoApp6.Presentation {
             //validiert den Dateipfad
             try {
                 string jsonData = File.ReadAllText(dateiName.Text!);
+
                 //validiert die Datei
                 if (jsonData == null) {
                     Fehlermeldung.Text = "Bitte gib einen gültigen Dateipfad ein!";
@@ -28,7 +34,16 @@ namespace UnoApp6.Presentation {
                 if (!isJSON(jsonData)) {
                     Fehlermeldung.Text = "Bitte gib einen gültigen Dateipfad ein!";
                     this.Frame.Navigate(typeof(MainPage), Fehlermeldung.Text);
-                    return;
+
+                    //validiert die YAML
+                    if (isYAML(jsonData)) {
+                        fileIsYAML = true;
+                        this.Frame.Navigate(typeof(JSONListe), dateiName.Text);
+                        return;
+                    }
+                    else {
+                        return;
+                    }
                 }
 
                 this.Frame.Navigate(typeof(JSONListe), dateiName.Text);
@@ -48,10 +63,26 @@ namespace UnoApp6.Presentation {
 
             base.OnNavigatedTo(e);
         }
+
+
+
         private bool isJSON(string json) {
 
             try {
                 JObject.Parse(json);
+            }
+            catch (Exception e) {
+                return false;
+            }
+            return true;
+        }
+        private bool isYAML(string json) {
+
+            try {
+                var deserializer = new DeserializerBuilder()
+                    .WithNamingConvention(HyphenatedNamingConvention.Instance)
+                    .Build();
+                var yaml = deserializer.Deserialize<ExpandoObject>(json);
             }
             catch (Exception e) {
                 return false;

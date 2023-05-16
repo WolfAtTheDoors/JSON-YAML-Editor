@@ -33,7 +33,7 @@ namespace UnoApp6.Presentation {
 
             if (Offnen.objektNameNummerListe.Count != 0) {   //Ist das Objekt verschachtelt?
                 //Original JSON als Objekt
-                JToken jsonDataOriginalObject = JToken.Parse(JSONListe.jsonDataOriginal!);
+                JToken jsonDataOriginalObject = JToken.Parse(JSONListe.dataOriginal!);
                 OriginalChangedObject = jsonDataOriginalObject;
 
                 //gibt uns das original des geänderten Objekts
@@ -49,7 +49,7 @@ namespace UnoApp6.Presentation {
                 //das Objekt anhand seiner Adresse ersetzen
                 JToken jsonDataNewToken = JToken.Parse(alteredJsonData!);
                 //addressiere das original
-                JToken OriginalJSONToken = JToken.Parse(JSONListe.jsonDataOriginal!);
+                JToken OriginalJSONToken = JToken.Parse(JSONListe.dataOriginal!);
 
                 //Objektadresse als int oder string
                 dynamic adress0 = -1;

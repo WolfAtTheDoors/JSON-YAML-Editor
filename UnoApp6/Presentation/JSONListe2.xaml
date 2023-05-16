@@ -14,7 +14,7 @@
         <!--Darstellung Objektnummer -->
         <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="JSON hier speichern" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="xxx"/>
+                <TextBlock Text="Deine Datei so speichern?" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="xxx"/>
             </utu:AutoLayout>
 
             <!--Darstellung der Seite -->

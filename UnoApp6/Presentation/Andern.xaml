@@ -21,7 +21,7 @@
                 <!-- Darstellung des Objekts-->
                 <ScrollViewer utu:AutoLayout.PrimaryAlignment="Stretch" Height="380">
                     <utu:AutoLayout Padding="600,0" PrimaryAxisAlignment="Center">
-                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Style="{StaticResource TitleMedium}" Name="jsonData" />
+                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Style="{StaticResource TitleMedium}" Name="dataText" />
                     </utu:AutoLayout>
                 </ScrollViewer>
 

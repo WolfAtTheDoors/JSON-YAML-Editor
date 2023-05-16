@@ -15,7 +15,7 @@
         <!--Darstellung Dateiname -->
         <utu:AutoLayout Background="{ThemeResource BackgroundBrush}" Spacing="1">
             <utu:AutoLayout Background="{ThemeResource PrimaryBrush}" Padding="153,12" PrimaryAxisAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="Deine JSON" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="PlatzhalterDateiName" />
+                <TextBlock Text="" utu:AutoLayout.CounterAlignment="Center" Foreground="{ThemeResource OnSecondaryContainerBrush}" Name="deineDatei" />
             </utu:AutoLayout>
 
             <!--Darstellung der Seite -->
@@ -24,7 +24,7 @@
                 <!--Darstellung der JSON -->
                 <ScrollViewer utu:AutoLayout.PrimaryAlignment="Stretch" Height="553" VerticalAlignment="Top" >
                     <utu:AutoLayout Padding="600, 0, 0, 0" PrimaryAxisAlignment="Center">
-                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" Name="jsonData" />
+                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" Name="dataText" />
                     </utu:AutoLayout>
                 </ScrollViewer>
 
