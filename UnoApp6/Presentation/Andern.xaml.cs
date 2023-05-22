@@ -10,7 +10,7 @@ namespace UnoApp6.Presentation {
     public sealed partial class Andern : Page {
         //JSONListe.dataOriginal;  speichert die originale Datei, die später überschrieben wird
         public static string kopierterName = "Hello";
-        public static string? kopierteEigenschaft = "World";
+        public static dynamic? kopierteEigenschaft = "World";
         public static JObject? jsonObject;
 
         public Andern() {
@@ -20,10 +20,9 @@ namespace UnoApp6.Presentation {
         private void Ubernehmen(object sender, RoutedEventArgs e) {
 
             if (!MainPage.fileIsYAML) {
-                int ignore;
-                double ignore2;
-
-                //deserialisieren
+                int parsedInt;
+                double parsedDouble;
+                bool parsedBool;
                 jsonObject = JObject.Parse(dataText.Text);
 
                 //eigenschaft entfernen
@@ -38,9 +37,29 @@ namespace UnoApp6.Presentation {
                 }
 
                 //Parse an integer
-                if (int.TryParse(neuerWert.Text, out ignore)) {
-                    int neuerWertZahl = int.Parse(neuerWert.Text);
+                if (int.TryParse(neuerWert.Text, out parsedInt)) {
 
+                    //eigenschaft hinzufügen (name)
+                    if (string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text)) {
+                        jsonObject[neuerName.Text] = parsedInt;
+                    }
+                    //Wert ersetzen
+                    if ((!string.IsNullOrEmpty(alterName.Text)) && string.IsNullOrEmpty(neuerName.Text) && (!string.IsNullOrEmpty(parsedInt.ToString()))) {
+                        jsonObject[alterName.Text] = parsedInt;
+                    }
+                    //alles ändern
+                    if (!string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text) && !string.IsNullOrEmpty(parsedInt.ToString())) {
+                        jsonObject[alterName.Text] = parsedInt;
+                        dataText.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                        dataText.Text = dataText.Text.Replace(alterName.Text, neuerName.Text);
+                        jsonObject = JObject.Parse(dataText.Text);
+                    }
+                }
+
+                //Parse a double
+                else if (double.TryParse(neuerWert.Text, out parsedDouble)) {
+                    neuerWert.Text = neuerWert.Text.Replace(",", ".");
+                    double neuerWertZahl = double.Parse(neuerWert.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
                     //eigenschaft hinzufügen (name)
                     if (string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text)) {
                         jsonObject[neuerName.Text] = neuerWertZahl;
@@ -57,21 +76,20 @@ namespace UnoApp6.Presentation {
                         jsonObject = JObject.Parse(dataText.Text);
                     }
                 }
-                //Parse a double
-                else if (double.TryParse(neuerWert.Text, out ignore2)) {
-                    neuerWert.Text = neuerWert.Text.Replace(",", ".");
-                    double neuerWertZahl = double.Parse(neuerWert.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+                //Parse a boolean
+                else if (bool.TryParse(neuerWert.Text, out parsedBool)) {
+
                     //eigenschaft hinzufügen (name)
                     if (string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text)) {
-                        jsonObject[neuerName.Text] = neuerWertZahl;
+                        jsonObject[neuerName.Text] = parsedBool;
                     }
                     //Wert ersetzen
-                    if ((!string.IsNullOrEmpty(alterName.Text)) && string.IsNullOrEmpty(neuerName.Text) && (!string.IsNullOrEmpty(neuerWertZahl.ToString()))) {
-                        jsonObject[alterName.Text] = neuerWertZahl;
+                    if ((!string.IsNullOrEmpty(alterName.Text)) && string.IsNullOrEmpty(neuerName.Text) && (!string.IsNullOrEmpty(parsedBool.ToString()))) {
+                        jsonObject[alterName.Text] = parsedBool;
                     }
                     //alles ändern
-                    if (!string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text) && !string.IsNullOrEmpty(neuerWertZahl.ToString())) {
-                        jsonObject[alterName.Text] = neuerWertZahl;
+                    if (!string.IsNullOrEmpty(alterName.Text) && !string.IsNullOrEmpty(neuerName.Text) && !string.IsNullOrEmpty(parsedBool.ToString())) {
+                        jsonObject[alterName.Text] = parsedBool;
                         dataText.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
                         dataText.Text = dataText.Text.Replace(alterName.Text, neuerName.Text);
                         jsonObject = JObject.Parse(dataText.Text);
@@ -97,9 +115,10 @@ namespace UnoApp6.Presentation {
                     }
                 }
 
+
+
                 //zurück serialisieren
                 dataText.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
-
                 //zurück zur Darstellung, mit geändertem Objekt
                 this.Frame.Navigate(typeof(Andern), dataText.Text);
 
@@ -156,28 +175,54 @@ namespace UnoApp6.Presentation {
                 this.Frame.Navigate(typeof(Andern), yamlText);
 
             }
-
         }
 
         private void kopieren(object sender, RoutedEventArgs e) {
-            jsonObject = JObject.Parse(dataText.Text);
 
-            kopierterName = alterName.Text;
-            kopierteEigenschaft = (string?)jsonObject[alterName.Text];
+            if (!MainPage.fileIsYAML) {
+                jsonObject = JObject.Parse(dataText.Text);
+
+                kopierterName = alterName.Text;
+                kopierteEigenschaft = jsonObject[alterName.Text];
+            }
+            else {
+                var deserializer = new DeserializerBuilder().Build();
+                var yamlObject = deserializer.Deserialize<dynamic>(dataText.Text);
+                kopierterName = alterName.Text;
+                kopierteEigenschaft = yamlObject[alterName.Text];
+
+            }
+
 
             this.Frame.Navigate(typeof(Andern), dataText.Text);
 
         }
         private void einfügen(object sender, RoutedEventArgs e) {
-            jsonObject = JObject.Parse(dataText.Text);
 
-            if (kopierterName != "Hello") {
-                jsonObject[kopierterName] = kopierteEigenschaft;
+            if (!MainPage.fileIsYAML) {
+                jsonObject = JObject.Parse(dataText.Text);
+                if (kopierterName != "Hello") {
+                    jsonObject[kopierterName] = kopierteEigenschaft;
+                }
+                dataText.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+
+
             }
-            dataText.Text = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+            else {
+                var deserializer = new DeserializerBuilder().Build();
+                var yamlObject = deserializer.Deserialize<dynamic>(dataText.Text);
+                if (kopierterName != "Hello") {
+                    yamlObject[kopierterName] = kopierteEigenschaft;
+                }
+                var serializer = new SerializerBuilder().Build();
+                dataText.Text = serializer.Serialize(yamlObject);
+
+            }
 
             this.Frame.Navigate(typeof(Andern), dataText.Text);
+
         }
+
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
@@ -185,7 +230,8 @@ namespace UnoApp6.Presentation {
             this.Frame.Navigate(typeof(JSONListe), dataText.Text);
         }
         private void speichern(object sender, RoutedEventArgs e) {
-            _ = this.Navigator()?.NavigateViewAsync<JSONListe2>(this, qualifier: Qualifiers.Dialog, dataText.Text);
+            this.Frame.Navigate(typeof(JSONListe2), dataText.Text);
+
         }
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 

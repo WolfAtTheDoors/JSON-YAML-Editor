@@ -23,7 +23,7 @@
                 <!--Darstellung der JSON -->
                 <ScrollViewer utu:AutoLayout.PrimaryAlignment="Stretch" Height="673">
                     <utu:AutoLayout Padding="600, 0" PrimaryAxisAlignment="Center">
-                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" Name="jsonDataNewFinal" />
+                        <TextBlock Text="" utu:AutoLayout.PrimaryAlignment="Stretch" Foreground="{ThemeResource OnSurfaceBrush}" Name="dataNewFinal" />
                     </utu:AutoLayout>
                 </ScrollViewer>
 

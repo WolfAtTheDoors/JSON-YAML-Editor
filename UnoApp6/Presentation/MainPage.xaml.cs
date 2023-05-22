@@ -80,7 +80,7 @@ namespace UnoApp6.Presentation {
 
             try {
                 var deserializer = new DeserializerBuilder()
-                    .WithNamingConvention(HyphenatedNamingConvention.Instance)
+                    //.WithNamingConvention(HyphenatedNamingConvention.Instance)
                     .Build();
                 var yaml = deserializer.Deserialize<ExpandoObject>(json);
             }

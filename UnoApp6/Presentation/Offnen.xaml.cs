@@ -9,14 +9,12 @@ namespace UnoApp6.Presentation {
         public static dynamic? yamlObjectDesired;
         public static string? dataText = "default";
         public static List<string> objektNameNummerListe = new List<string>();
-
         public Offnen() {
             this.InitializeComponent();
         }
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
-
         private void GoToJSONListe(object sender, RoutedEventArgs e) {
 
             if (!MainPage.fileIsYAML) {
@@ -73,7 +71,6 @@ namespace UnoApp6.Presentation {
         protected override void OnNavigatedTo(NavigationEventArgs e) {
 
             dataText = e.Parameter.ToString();
-
             base.OnNavigatedTo(e);
 
         }

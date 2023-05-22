@@ -1,7 +1,7 @@
 ﻿namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
         public static string dateiPfad = "C:\\default.json";
-        public static string? dataOriginal;  //hält das orignal vor, um es später zu ändern
+        public static string? dataOriginal;  //hält das Orignal vor, um es später zu ändern
 
         public JSONListe() {
             this.InitializeComponent();
@@ -18,14 +18,14 @@
         }
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             string? dateiName;
+            dateiName = e.Parameter.ToString();
 
-            if (Offnen.objektNameNummerListe.Count < 1) {
-                dateiName = e.Parameter.ToString();
+            try {
                 dataText.Text = File.ReadAllText(dateiName!);
+                dateiPfad = dateiName!;
                 dataOriginal = dataText.Text;
             }
-            else {
-                dateiName = e.Parameter.ToString();
+            catch {
                 dataText.Text = dateiName;
             }
 
