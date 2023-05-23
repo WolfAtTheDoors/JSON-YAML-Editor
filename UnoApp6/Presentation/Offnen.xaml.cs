@@ -1,79 +1,86 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-// C:\Users\gisela.wolf\Projekte\vmListe.json array
-// C:\Users\gisela.wolf\Projekte\rahmenduebel.json objekte
-// C:\Users\gisela.wolf\Projekte\UnoApp6-master\EinfachstesJSON.json
-// C:\Users\gisela.wolf\Projekte\TestDatei.json
+using System.Linq;
+using YamlDotNet.Serialization;
 
 namespace UnoApp6.Presentation {
     public sealed partial class Offnen : Page {
         public static JToken? jsonObject;
         public static JToken? jsonObjectDesired;
-        public static string? jsonData = "default";
-
+        public static dynamic? yamlObjectDesired;
+        public static string? dataText = "default";
         public static List<string> objektNameNummerListe = new List<string>();
-
+        public static bool objectIsCorrect = true;
         public Offnen() {
             this.InitializeComponent();
         }
-
         private void GoBack(object sender, RoutedEventArgs e) {
             _ = this.Navigator()?.NavigateBackAsync(this);
         }
-        private void GoToJSONListe2(object sender, RoutedEventArgs e) {
+        private void GoToJSONListe(object sender, RoutedEventArgs e) {
 
-            //deserialize
-            jsonObject = JToken.Parse(jsonData!);
+            if (!MainPage.fileIsYAML) {
+                //input ist Arraynummer oder Objektname. Diese Liste liefert später die Adresse, mit der Änderungen gespeichert werden.
+                jsonObject = JToken.Parse(dataText!);
 
-            //input is Arraynumber or Objektname. Add to Liste, increase List.Count. This list provides the adress later for saving to the entire JSON
-            objektNameNummerListe.Add(objektNummerName.Text);
+                if (jsonObject is JArray) {                                                                                           //wenn das Object ein Array ist,  
+                    var jsonObjectArray = jsonObject as JArray;
 
-            //array
-            if (jsonObject is JArray) {                                                                                           //Wenn das Objekt ein Array ist,
-                var jsonObjectArray = jsonObject as JArray;
-                if (objektNameNummerListe[objektNameNummerListe.Count - 1].All(char.IsDigit)) {                                   //muss es mit einem integer angesprochen werden,
-                    if (int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1]) <= ((int)jsonObjectArray!.Count)) {     //der kleiner gleich der Anzahl der Objekte im Array ist
-                        jsonObjectDesired = jsonObjectArray[int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1])];
+                    if ((!Int32.TryParse(objektNummerName.Text, out int result)) || result >= ((int)jsonObjectArray!.Count)) {
+                        dataText = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                        objectIsCorrect = false;
                     }
                     else {
-                        jsonObjectDesired = "So viele Objekte hat das Array nicht.";
+                        objektNameNummerListe.Add(objektNummerName.Text);
+                        jsonObjectDesired = jsonObjectArray![int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1])];
+                        objectIsCorrect = true;
+                        dataText = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
+
                     }
                 }
-                else {
-                    jsonObjectDesired = "Dieses Objekt ist ein Array und muss mit einer Nummer aufgerufen werden";
+
+                else if (jsonObject is JObject) {
+
+                    if (jsonObject[objektNummerName.Text] is null) {
+                        dataText = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                        objectIsCorrect = false;
+                    }
+                    else {
+                        objektNameNummerListe.Add(objektNummerName.Text);
+                        jsonObjectDesired = jsonObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
+                        objectIsCorrect = true;
+                        dataText = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
+
+                    }
+                }
+
+            }
+
+            if (MainPage.fileIsYAML) {
+                var deserializer = new DeserializerBuilder().Build();
+                var yamlObject = deserializer.Deserialize<dynamic>(dataText!);
+
+                try {
+                    yamlObjectDesired = yamlObject[objektNummerName.Text];
+                    var serializer = new SerializerBuilder().Build();
+                    dataText = serializer.Serialize(yamlObjectDesired);
+                    objektNameNummerListe.Add(objektNummerName.Text);
+                    objectIsCorrect = true;
+
+                }
+                catch {
+                    var serializer = new SerializerBuilder().Build();
+                    dataText = serializer.Serialize(yamlObject);
+                    objectIsCorrect = false;
                 }
             }
 
-            //object
-            else if (jsonObject is JObject) {
-                jsonObjectDesired = jsonObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
-            }
+            this.Frame.Navigate(typeof(JSONListe), dataText);
 
-            //all else
-            else {
-                jsonObjectDesired = jsonObject;
-            }
-
-            //serialize
-            if (!(jsonObjectDesired is null)) {
-                jsonData = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
-            }
-            else {
-                jsonData = "Bitte das Objekt mit einer Nummer (im Array) oder mit dem Namen (im Objekt) aufrufen.";
-            }
-
-            this.Frame.Navigate(typeof(JSONListe2), jsonData);
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e) {
-
-            jsonData = e.Parameter.ToString();
-
+            dataText = e.Parameter.ToString();
             base.OnNavigatedTo(e);
-
         }
     }
 }
-
-
-
