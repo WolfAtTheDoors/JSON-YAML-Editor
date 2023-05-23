@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Data;
 using YamlDotNet.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace UnoApp6.Presentation {
     public sealed partial class JSONListe2 : Page {

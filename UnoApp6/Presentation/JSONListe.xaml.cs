@@ -1,4 +1,6 @@
-﻿namespace UnoApp6.Presentation {
+﻿using Microsoft.UI.Composition;
+
+namespace UnoApp6.Presentation {
     public sealed partial class JSONListe : Page {
         public static string dateiPfad = "C:\\default.json";
         public static string? dataOriginal;  //hält das Orignal vor, um es später zu ändern
@@ -29,12 +31,17 @@
                 dataText.Text = dateiName;
             }
 
+            if (!Offnen.objectIsCorrect) {
+                deineDatei.Text = "Das war kein gültiges Objekt. Bitte nochmal probieren."; 
+            }
+            else if (MainPage.fileIsYAML) {
 
-            if (MainPage.fileIsYAML) {
                 deineDatei.Text = "Deine YAML";
             }
             else {
+
                 deineDatei.Text = "Deine JSON";
+
             }
 
             base.OnNavigatedTo(e);

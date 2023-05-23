@@ -9,6 +9,7 @@ namespace UnoApp6.Presentation {
         public static dynamic? yamlObjectDesired;
         public static string? dataText = "default";
         public static List<string> objektNameNummerListe = new List<string>();
+        public static bool objectIsCorrect = true;
         public Offnen() {
             this.InitializeComponent();
         }
@@ -59,22 +60,26 @@ namespace UnoApp6.Presentation {
 
                 objektNameNummerListe.Add(objektNummerName.Text);
 
-                yamlObjectDesired = yamlObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
+                try {
+                    yamlObjectDesired = yamlObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
+                    var serializer = new SerializerBuilder().Build();
+                    dataText = serializer.Serialize(yamlObjectDesired);
+                    objectIsCorrect = true;
 
-                var serializer = new SerializerBuilder().Build();
-                dataText = serializer.Serialize(yamlObjectDesired);
+                }
+                catch {
+                    var serializer = new SerializerBuilder().Build();
+                    dataText = serializer.Serialize(yamlObject);
+                    objectIsCorrect = false;
+                }
             }
 
             this.Frame.Navigate(typeof(JSONListe), dataText);
+
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e) {
-
             dataText = e.Parameter.ToString();
             base.OnNavigatedTo(e);
-
         }
     }
 }
-
-
