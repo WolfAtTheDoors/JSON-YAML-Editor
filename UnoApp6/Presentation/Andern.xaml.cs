@@ -190,7 +190,6 @@ namespace UnoApp6.Presentation {
         }
 
         private void kopieren(object sender, RoutedEventArgs e) {
-
             if (!MainPage.fileIsYAML) {
                 jsonObject = JObject.Parse(dataText.Text);
                 kopierterName = alterName.Text;

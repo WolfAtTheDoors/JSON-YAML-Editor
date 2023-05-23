@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 using YamlDotNet.Serialization;
 
 namespace UnoApp6.Presentation {
@@ -21,49 +22,49 @@ namespace UnoApp6.Presentation {
             if (!MainPage.fileIsYAML) {
                 //input ist Arraynummer oder Objektname. Diese Liste liefert später die Adresse, mit der Änderungen gespeichert werden.
                 jsonObject = JToken.Parse(dataText!);
-                objektNameNummerListe.Add(objektNummerName.Text);
 
-                if (jsonObject is JArray) {                                                                                           //Wenn das Objekt ein Array ist,
+                if (jsonObject is JArray) {                                                                                           //wenn das Object ein Array ist,  
                     var jsonObjectArray = jsonObject as JArray;
-                    if (objektNameNummerListe[objektNameNummerListe.Count - 1].All(char.IsDigit)) {                                   //muss es mit einem integer angesprochen werden,
-                        if (int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1]) <= ((int)jsonObjectArray!.Count)) {     //der kleiner gleich der Anzahl der Objekte im Array ist
-                            jsonObjectDesired = jsonObjectArray[int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1])];
-                        }
-                        else {
-                            jsonObjectDesired = "So viele Objekte hat das Array nicht.";
-                        }
+
+                    if ((!Int32.TryParse(objektNummerName.Text, out int result)) || result >= ((int)jsonObjectArray!.Count)) {
+                        dataText = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                        objectIsCorrect = false;
                     }
                     else {
-                        jsonObjectDesired = "Dieses Objekt ist ein Array und muss mit einem Integer aufgerufen werden.";
+                        objektNameNummerListe.Add(objektNummerName.Text);
+                        jsonObjectDesired = jsonObjectArray![int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1])];
+                        objectIsCorrect = true;
+                        dataText = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
+
                     }
                 }
 
                 else if (jsonObject is JObject) {
-                    jsonObjectDesired = jsonObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
+
+                    if (jsonObject[objektNummerName.Text] is null) {
+                        dataText = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                        objectIsCorrect = false;
+                    }
+                    else {
+                        objektNameNummerListe.Add(objektNummerName.Text);
+                        jsonObjectDesired = jsonObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
+                        objectIsCorrect = true;
+                        dataText = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
+
+                    }
                 }
 
-                else {
-                    jsonObjectDesired = jsonObject;
-                }
-
-                if (jsonObjectDesired != null) {
-                    dataText = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
-                }
-                else {
-                    dataText = "Bitte das Objekt mit einer Nummer (im Array) oder mit dem Namen (im Objekt) aufrufen.";
-                }
             }
 
             if (MainPage.fileIsYAML) {
                 var deserializer = new DeserializerBuilder().Build();
                 var yamlObject = deserializer.Deserialize<dynamic>(dataText!);
 
-                objektNameNummerListe.Add(objektNummerName.Text);
-
                 try {
-                    yamlObjectDesired = yamlObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
+                    yamlObjectDesired = yamlObject[objektNummerName.Text];
                     var serializer = new SerializerBuilder().Build();
                     dataText = serializer.Serialize(yamlObjectDesired);
+                    objektNameNummerListe.Add(objektNummerName.Text);
                     objectIsCorrect = true;
 
                 }
