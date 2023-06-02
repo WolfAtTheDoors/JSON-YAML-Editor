@@ -106,7 +106,11 @@ namespace UnoApp6.Presentation {
                         }
                     }
 
+                    JToken? token = bekommeAdresse(OriginalJSONToken, adress0, Offnen.objektNameNummerListe.Count);
+                    token.Replace(jsonDataNewToken);
+
                     //Original Objekt ersetzen, je nach Anzahl der Verschachtelungen
+
                     switch (Offnen.objektNameNummerListe.Count) {
                         case 1:
                         OriginalJSONToken[adress0]!.Replace(jsonDataNewToken);
@@ -230,6 +234,13 @@ namespace UnoApp6.Presentation {
                 }
             }
             base.OnNavigatedTo(e);
+        }
+
+        private JToken? bekommeAdresse(JToken parent, object adresse, int tiefe, int aktuelleTiefe = 0) {
+            if (aktuelleTiefe <= tiefe) {
+                return bekommeAdresse(parent, adresse, tiefe, aktuelleTiefe + 1);
+            }
+            return parent[adresse]!;
         }
     }
 }

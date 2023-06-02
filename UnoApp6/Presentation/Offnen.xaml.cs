@@ -23,9 +23,8 @@ namespace UnoApp6.Presentation {
                 //input ist Arraynummer oder Objektname. Diese Liste liefert später die Adresse, mit der Änderungen gespeichert werden.
                 jsonObject = JToken.Parse(dataText!);
 
-                if (jsonObject is JArray) {                                                                                           //wenn das Object ein Array ist,  
+                if (jsonObject is JArray) {
                     var jsonObjectArray = jsonObject as JArray;
-
                     if ((!Int32.TryParse(objektNummerName.Text, out int result)) || result >= ((int)jsonObjectArray!.Count)) {
                         dataText = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
                         objectIsCorrect = false;
@@ -40,7 +39,6 @@ namespace UnoApp6.Presentation {
                 }
 
                 else if (jsonObject is JObject) {
-
                     if (jsonObject[objektNummerName.Text] is null) {
                         dataText = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
                         objectIsCorrect = false;
@@ -50,10 +48,8 @@ namespace UnoApp6.Presentation {
                         jsonObjectDesired = jsonObject[objektNameNummerListe[objektNameNummerListe.Count - 1]];
                         objectIsCorrect = true;
                         dataText = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
-
                     }
                 }
-
             }
 
             if (MainPage.fileIsYAML) {
