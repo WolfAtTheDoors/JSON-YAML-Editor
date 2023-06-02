@@ -43,9 +43,9 @@ namespace UnoApp6.Presentation {
                     OriginalChangedObject = jsonDataOriginalObject;
 
                     //gibt uns das original des geänderten Objekts
-                    foreach (var b in Offnen.objektNameNummerListe) {
-                        if (b.All(char.IsDigit)) {
-                            OriginalChangedObject = OriginalChangedObject[int.Parse(b)]!;
+                    foreach (dynamic b in Offnen.objektNameNummerListe) {
+                        if (int.TryParse(b, out int n)) {
+                            OriginalChangedObject = OriginalChangedObject[n]!;
                         }
                         else {
                             OriginalChangedObject = OriginalChangedObject[b]!;
@@ -54,10 +54,10 @@ namespace UnoApp6.Presentation {
 
                     //das Objekt anhand seiner Adresse ersetzen
                     JToken jsonDataNewToken = JToken.Parse(alteredData!);
-                    //addressiere das original
                     JToken OriginalJSONToken = JToken.Parse(JSONListe.dataOriginal!);
 
-                    //Objektadresse als int oder string
+                    /*Objektadresse als int oder string
+                    /
                     dynamic adress0 = -1;
                     dynamic adress1 = -1;
                     dynamic adress2 = -1;
@@ -105,12 +105,13 @@ namespace UnoApp6.Presentation {
                             adress4 = Offnen.objektNameNummerListe[4];
                         }
                     }
+*/
+                    JToken? token = bekommeAdresse(OriginalJSONToken, Offnen.objektNameNummerListe, Offnen.objektNameNummerListe.Count);
 
-                    JToken? token = bekommeAdresse(OriginalJSONToken, adress0, Offnen.objektNameNummerListe.Count);
-                    token.Replace(jsonDataNewToken);
+                    token!.Replace(jsonDataNewToken);
 
                     //Original Objekt ersetzen, je nach Anzahl der Verschachtelungen
-
+                    /*
                     switch (Offnen.objektNameNummerListe.Count) {
                         case 1:
                         OriginalJSONToken[adress0]!.Replace(jsonDataNewToken);
@@ -132,6 +133,7 @@ namespace UnoApp6.Presentation {
                         OriginalJSONToken[adress0]![adress1]![adress2]![adress3]![adress4]!.Replace(jsonDataNewToken);
                         break;
                     }
+*/
 
                     //schreibt das geänderte Token in die neue, serialisierte JSON, zur Darstellung
                     dataNewFinal.Text = JsonConvert.SerializeObject(OriginalJSONToken, Formatting.Indented);
@@ -143,7 +145,7 @@ namespace UnoApp6.Presentation {
                 }
             }
 
-            //YAML speichern
+            //YAML
             else if (MainPage.fileIsYAML) {
                 //Ist das Objekt verschachtelt?
                 if (Offnen.objektNameNummerListe.Count != 0) {
@@ -175,13 +177,13 @@ namespace UnoApp6.Presentation {
                         adress1 = Offnen.objektNameNummerListe[1];
                     }
                     if (Offnen.objektNameNummerListe.Count > 2 && Offnen.objektNameNummerListe[2] != null) {
-                        adress2 = int.Parse(Offnen.objektNameNummerListe[2]);
+                        adress2 = (Offnen.objektNameNummerListe[2]);
                     }
                     if (Offnen.objektNameNummerListe.Count > 3 && Offnen.objektNameNummerListe[3] != null) {
-                        adress3 = int.Parse(Offnen.objektNameNummerListe[3]);
+                        adress3 = (Offnen.objektNameNummerListe[3]);
                     }
                     if (Offnen.objektNameNummerListe.Count > 4 && Offnen.objektNameNummerListe[4] != null) {
-                        adress4 = int.Parse(Offnen.objektNameNummerListe[4]);
+                        adress4 = (Offnen.objektNameNummerListe[4]);
 
                     }
 
@@ -236,12 +238,42 @@ namespace UnoApp6.Presentation {
             base.OnNavigatedTo(e);
         }
 
-        private JToken? bekommeAdresse(JToken parent, object adresse, int tiefe, int aktuelleTiefe = 0) {
-            if (aktuelleTiefe <= tiefe) {
-                return bekommeAdresse(parent, adresse, tiefe, aktuelleTiefe + 1);
+        private JToken? bekommeAdresse(JToken parent, List<object> adresse, int tiefe, int aktuelleTiefe = 0) {
+            if (aktuelleTiefe < tiefe - 1) {
+
+                if (int.TryParse(adresse[aktuelleTiefe].ToString(), out int result)) {
+                    return bekommeAdresse(parent[result]!, adresse, tiefe, aktuelleTiefe + 1);
+                }
+                else {
+                    return bekommeAdresse(parent[adresse[aktuelleTiefe]]!, adresse, tiefe, aktuelleTiefe + 1);
+                }
+
+
             }
-            return parent[adresse]!;
+
+            if (int.TryParse(adresse[aktuelleTiefe].ToString(), out int result2)) {
+                return parent[result2]!;
+            }
+            else {
+                return parent[adresse[aktuelleTiefe]]!;
+            }
+
+
         }
+        /*
+        private JToken? bekommeAdresse2(JToken parent, JToken newChild, List<string> adresse, int tiefe, int aktuelleTiefe = 0) {
+            for (int i = 0; i < tiefe; i++) {
+                parent = parent[adresse[i]]!;
+
+                if (i == tiefe) {
+                    parent.Replace(newChild);
+                }
+                return parent;
+            }
+
+
+        }
+        */
     }
 }
 

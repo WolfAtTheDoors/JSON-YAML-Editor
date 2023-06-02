@@ -9,7 +9,7 @@ namespace UnoApp6.Presentation {
         public static JToken? jsonObjectDesired;
         public static dynamic? yamlObjectDesired;
         public static string? dataText = "default";
-        public static List<string> objektNameNummerListe = new List<string>();
+        public static List<object> objektNameNummerListe = new List<object>();
         public static bool objectIsCorrect = true;
         public Offnen() {
             this.InitializeComponent();
@@ -31,7 +31,7 @@ namespace UnoApp6.Presentation {
                     }
                     else {
                         objektNameNummerListe.Add(objektNummerName.Text);
-                        jsonObjectDesired = jsonObjectArray![int.Parse(objektNameNummerListe[objektNameNummerListe.Count - 1])];
+                        jsonObjectDesired = jsonObjectArray![result];
                         objectIsCorrect = true;
                         dataText = JsonConvert.SerializeObject(jsonObjectDesired, Formatting.Indented);
 
